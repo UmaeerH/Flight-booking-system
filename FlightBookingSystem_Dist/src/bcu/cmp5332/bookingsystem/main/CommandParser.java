@@ -1,10 +1,7 @@
 package bcu.cmp5332.bookingsystem.main;
 
-import bcu.cmp5332.bookingsystem.commands.LoadGUI;
-import bcu.cmp5332.bookingsystem.commands.ListFlights;
-import bcu.cmp5332.bookingsystem.commands.AddFlight;
-import bcu.cmp5332.bookingsystem.commands.Command;
-import bcu.cmp5332.bookingsystem.commands.Help;
+import bcu.cmp5332.bookingsystem.commands.*; 
+// Importing entire commands package at once
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -22,7 +19,7 @@ public class CommandParser {
             if (cmd.equals("addflight")) {
                 BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
                 System.out.print("Flight Number: ");
-                String flighNumber = reader.readLine();
+                String flightNumber = reader.readLine();
                 System.out.print("Origin: ");
                 String origin = reader.readLine();
                 System.out.print("Destination: ");
@@ -30,11 +27,19 @@ public class CommandParser {
 
                 LocalDate departureDate = parseDateWithAttempts(reader);
 
-                return new AddFlight(flighNumber, origin, destination, departureDate);
+                return new AddFlight(flightNumber, origin, destination, departureDate);
             } else if (cmd.equals("addcustomer")) {
+            	BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+            	System.out.print("Customer\'s Name: ");					// Take in customer name and phone
+            	String customerName = reader.readLine();
+            	System.out.print("Customer\'s Phone Number: ");
+            	String customerPhone = reader.readLine();
+            	
+            	return new AddCustomer(customerName, customerPhone);	// Add customer to customer tree
                 
             } else if (cmd.equals("loadgui")) {
                 return new LoadGUI();
+                
             } else if (parts.length == 1) {
                 if (line.equals("listflights")) {
                     return new ListFlights();

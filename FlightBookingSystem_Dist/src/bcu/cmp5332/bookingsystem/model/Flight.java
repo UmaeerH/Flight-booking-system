@@ -32,40 +32,40 @@ public class Flight {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setId(int newid) {
+        this.id = newid;
     }
 
     public String getFlightNumber() {
         return flightNumber;
     }
 
-    public void setFlightNumber(String flightNumber) {
-        this.flightNumber = flightNumber;
+    public void setFlightNumber(String newFlightNumber) {
+        this.flightNumber = newFlightNumber;
     }
     
     public String getOrigin() {
         return origin;
     }
     
-    public void setOrigin(String origin) {
-        this.origin = origin;
+    public void setOrigin(String newOrigin) {
+        this.origin = newOrigin;
     }
 
     public String getDestination() {
         return destination;
     }
 
-    public void setDestination(String destination) {
-        this.destination = destination;
+    public void setDestination(String newDestination) {
+        this.destination = newDestination;
     }
 
     public LocalDate getDepartureDate() {
         return departureDate;
     }
 
-    public void setDepartureDate(LocalDate departureDate) {
-        this.departureDate = departureDate;
+    public void setDepartureDate(LocalDate newDepartureDate) {
+        this.departureDate = newDepartureDate;
     }
 
     public List<Customer> getPassengers() {
