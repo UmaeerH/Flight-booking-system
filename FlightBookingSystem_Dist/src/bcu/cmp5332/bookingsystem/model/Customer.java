@@ -2,23 +2,23 @@ package bcu.cmp5332.bookingsystem.model;
 
 import bcu.cmp5332.bookingsystem.main.FlightBookingSystemException;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
-@SuppressWarnings("unused")
 public class Customer {
     
     private int id;
     private String name;
     private String phone;
+    private String email;
     private List<Booking> bookings = new ArrayList<>();
     
-    public Customer(int id, String name, String phone) {
+    public Customer(int id, String name, String phone, String email) {
         this.id = id;
         this.name = name;
         this.phone = phone;
+        this.email = email;
         
         bookings = new ArrayList<>();
     }
@@ -45,6 +45,14 @@ public class Customer {
     
     public void setPhone(String newPhone) {
     	this.phone = newPhone;
+    }
+    
+    public String getEmail() {
+    	return email;
+    }
+    
+    public void setEmail(String newEmail) {
+    	this.email = newEmail;
     }
     
     public List<Booking> getBookings() {
