@@ -28,6 +28,8 @@ public class Main {
                 command.execute(fbs);
             } catch (FlightBookingSystemException ex) {
                 System.out.println(ex.getMessage());
+            } catch (IllegalArgumentException il) {
+            	System.out.println(il.getMessage());
             }
         }
         FlightBookingSystemData.store(fbs);

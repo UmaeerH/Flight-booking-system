@@ -55,7 +55,11 @@ public class FlightBookingSystem {
         if (customers.containsKey(customer.getId())) {
             throw new IllegalArgumentException("Duplicate customer ID.");
         }
-        // TODO Add in an email checker later
+        // Iterate through customer list to see if email is a duplicate
+        for (Customer present : customers.values()) {
+        	if(customer.getEmail().equals(present.getEmail()))
+        	throw new IllegalArgumentException("Email already associated with a customer.");
+        }
         customers.put(customer.getId(), customer);
     }
     

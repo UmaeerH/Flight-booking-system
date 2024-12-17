@@ -26,7 +26,7 @@ public class CommandParser {
                 String destination = reader.readLine();
 
                 LocalDate departureDate = parseDateWithAttempts(reader);
-
+                // Add Flight to Flight tree
                 return new AddFlight(flightNumber, origin, destination, departureDate);
                 
             } else if (cmd.equals("addcustomer")) {
@@ -37,10 +37,9 @@ public class CommandParser {
             	String customerPhone = reader.readLine();
             	System.out.print("Customer\'s Email: ");
             	String customerEmail = reader.readLine();
-            	
-            	return new AddCustomer(customerName, customerPhone, customerEmail);	
             	// Add customer to customer tree
-                
+            	return new AddCustomer(customerName, customerPhone, customerEmail);
+            	
             } else if (cmd.equals("loadgui")) {
                 return new LoadGUI();
                 
@@ -48,7 +47,7 @@ public class CommandParser {
                 if (line.equals("listflights")) {
                     return new ListFlights();
                 } else if (line.equals("listcustomers")) {
-                    
+                	return new ListCustomers();
                 } else if (line.equals("help")) {
                     return new Help();
                 }

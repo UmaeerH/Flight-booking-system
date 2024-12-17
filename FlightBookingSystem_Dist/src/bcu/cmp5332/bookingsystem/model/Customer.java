@@ -55,6 +55,10 @@ public class Customer {
     	this.email = newEmail;
     }
     
+    public String getDetailsShort() {
+    	return "Customer: #" + id + " - " + name + "\t | " + phone + " | " + email;
+    }
+    
     public List<Booking> getBookings() {
         return new ArrayList<>(bookings);
     }
