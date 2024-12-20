@@ -49,6 +49,8 @@ public class FlightDataManager implements DataManager {
                 out.print(flight.getOrigin() + SEPARATOR);
                 out.print(flight.getDestination() + SEPARATOR);
                 out.print(flight.getDepartureDate() + SEPARATOR);
+                out.print(flight.getCapacity() + SEPARATOR);
+                out.print(flight.getPrice() + SEPARATOR);
                 out.println();
             }
         }
