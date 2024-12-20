@@ -1,7 +1,5 @@
 package bcu.cmp5332.bookingsystem.data;
 
-
-
 import bcu.cmp5332.bookingsystem.main.FlightBookingSystemException;
 import bcu.cmp5332.bookingsystem.model.FlightBookingSystem;
 import java.io.IOException;
@@ -18,7 +16,7 @@ public class FlightBookingSystemData {
         
         /* Uncomment the two lines below when the implementation of their 
         loadData() and storeData() methods is complete */
-        // dataManagers.add(new CustomerDataManager());
+        dataManagers.add(new CustomerDataManager());
         // dataManagers.add(new BookingDataManager());
     }
     
