@@ -15,15 +15,20 @@ public class Flight {
     private String origin;
     private String destination;
     private LocalDate departureDate;
+    private int capacity;
+    private double price;
 
     private final Set<Customer> passengers;
 
-    public Flight(int id, String flightNumber, String origin, String destination, LocalDate departureDate) {
+    public Flight(int id, String flightNumber, String origin, 
+    			String destination, LocalDate departureDate, int capacity, double price) {
         this.id = id;
         this.flightNumber = flightNumber;
         this.origin = origin;
         this.destination = destination;
         this.departureDate = departureDate;
+        this.capacity = capacity;
+        this.price = price;
         
         passengers = new HashSet<>();
     }
@@ -66,6 +71,22 @@ public class Flight {
 
     public void setDepartureDate(LocalDate newDepartureDate) {
         this.departureDate = newDepartureDate;
+    }
+    
+    public int getCapacity() {
+    	return capacity;
+    }
+    
+    public void setCapacity(int newCapacity) {
+    	this.capacity = newCapacity;
+    }
+    
+    public double getPrice() {
+    	return price;
+    }
+    
+    public void setPrice(double newPrice) {
+    	this.price = newPrice;
     }
 
     public List<Customer> getPassengers() {

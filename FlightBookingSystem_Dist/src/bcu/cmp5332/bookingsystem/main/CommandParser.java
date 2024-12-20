@@ -24,10 +24,16 @@ public class CommandParser {
                 String origin = reader.readLine();
                 System.out.print("Destination: ");
                 String destination = reader.readLine();
+                System.out.print("Capacity (integer only): ");
+                int capacity = Integer.parseInt(reader.readLine());
+                System.out.print("Price (in GBP): ");
+                double price = Double.parseDouble(reader.readLine());
+                
+                
 
                 LocalDate departureDate = parseDateWithAttempts(reader);
                 // Add Flight to Flight tree
-                return new AddFlight(flightNumber, origin, destination, departureDate);
+                return new AddFlight(flightNumber, origin, destination, departureDate, capacity, price);
                 
             } else if (cmd.equals("addcustomer")) {
             	BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
