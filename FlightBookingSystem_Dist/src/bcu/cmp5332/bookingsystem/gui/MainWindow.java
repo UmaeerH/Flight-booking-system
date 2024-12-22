@@ -17,10 +17,12 @@ import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.UIManager;
+@SuppressWarnings("unused")
 
 public class MainWindow extends JFrame implements ActionListener {
-
-    private JMenuBar menuBar;
+	private static final long serialVersionUID = -565274564213160712L;
+	
+	private JMenuBar menuBar;
     private JMenu adminMenu;
     private JMenu flightsMenu;
     private JMenu bookingsMenu;

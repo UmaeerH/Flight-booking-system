@@ -20,11 +20,14 @@ import javax.swing.UIManager;
 
 public class AddFlightWindow extends JFrame implements ActionListener {
 
-    private MainWindow mw;
+    private static final long serialVersionUID = -2525255480273182291L;
+	private MainWindow mw;
     private JTextField flightNoText = new JTextField();
     private JTextField originText = new JTextField();
     private JTextField destinationText = new JTextField();
     private JTextField depDateText = new JTextField();
+    private JTextField capacityText = new JTextField();
+    private JTextField priceText = new JTextField();
 
     private JButton addBtn = new JButton("Add");
     private JButton cancelBtn = new JButton("Cancel");
@@ -58,6 +61,11 @@ public class AddFlightWindow extends JFrame implements ActionListener {
         topPanel.add(destinationText);
         topPanel.add(new JLabel("Departure Date (YYYY-MM-DD) : "));
         topPanel.add(depDateText);
+        topPanel.add(new JLabel("Capacity : "));
+        topPanel.add(capacityText);
+        topPanel.add(new JLabel("Price : "));
+        topPanel.add(priceText);
+       
 
         JPanel bottomPanel = new JPanel();
         bottomPanel.setLayout(new GridLayout(1, 3));
@@ -92,14 +100,29 @@ public class AddFlightWindow extends JFrame implements ActionListener {
             String origin = originText.getText();
             String destination = destinationText.getText();
             LocalDate departureDate = null;
+            int capacity;
+            double price;
+            // parsing the data
             try {
                 departureDate = LocalDate.parse(depDateText.getText());
             }
             catch (DateTimeParseException dtpe) {
-                throw new FlightBookingSystemException("Date must be in YYYY-DD-MM format");
+                throw new FlightBookingSystemException("Date must be in YYYY-MM-DD format");
+            }
+            try {
+                capacity = Integer.parseInt(capacityText.getText());
+            }
+            catch (IllegalArgumentException e) {
+                throw new FlightBookingSystemException("Capacity must be a positive integer");
+            }
+            try {
+                price = Double.parseDouble(priceText.getText());
+            }
+            catch (IllegalArgumentException e) {
+                throw new FlightBookingSystemException("Price must be a valid number");
             }
             // create and execute the AddFlight Command
-            Command addFlight = new AddFlight(flightNumber, origin, destination, departureDate);
+            Command addFlight = new AddFlight(flightNumber, origin, destination, departureDate, capacity, price);
             addFlight.execute(mw.getFlightBookingSystem());
             // refresh the view with the list of flights
             mw.displayFlights();
