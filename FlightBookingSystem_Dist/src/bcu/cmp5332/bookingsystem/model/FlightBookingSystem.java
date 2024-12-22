@@ -10,30 +10,59 @@ public class FlightBookingSystem {
     
     private final Map<Integer, Customer> customers = new TreeMap<>();
     private final Map<Integer, Flight> flights = new TreeMap<>();
+    private final Map<Integer, Booking> bookings = new TreeMap<>();
 
     public LocalDate getSystemDate() {
         return systemDate;
     }
-
+    
+    // FLIGHTS
+    
     public List<Flight> getFlights() {
         List<Flight> out = new ArrayList<>(flights.values());
         return Collections.unmodifiableList(out);
     }
 
+    
     public Flight getFlightByID(int id) throws FlightBookingSystemException {
         if (!flights.containsKey(id)) {
             throw new FlightBookingSystemException("There is no flight with that ID.");
         }
         return flights.get(id);
     }
-
+    
+    // CUSTOMERS
+    
+    public List<Customer> getCustomers() {
+    	List<Customer> out = new ArrayList<>(customers.values());
+    	return Collections.unmodifiableList(out); 
+    	}
+    
+    
     public Customer getCustomerByID(int id) throws FlightBookingSystemException {
         if (!customers.containsKey(id)) {
         	throw new FlightBookingSystemException("There is no customer with that ID.");
         }
         return customers.get(id);
     }
-
+     
+    // BOOKINGS 
+    
+    public List<Booking> getBookings() {
+    	List<Booking> out = new ArrayList<>(bookings.values());
+    	return Collections.unmodifiableList(out); 
+    	}
+    
+    
+    public Booking getBookingByID(int id) throws FlightBookingSystemException {
+        if (!bookings.containsKey(id)) {
+        	throw new FlightBookingSystemException("There is no booking with that ID.");
+        }
+        return bookings.get(id);
+    }
+    
+    // ADD METHODS
+    
     public void addFlight(Flight flight) throws FlightBookingSystemException {
         if (flights.containsKey(flight.getId())) {
             throw new IllegalArgumentException("Duplicate flight ID.");
@@ -47,10 +76,8 @@ public class FlightBookingSystem {
         }
         flights.put(flight.getId(), flight);
     }
-
     
     
-    // CUSTOMERS
     public void addCustomer(Customer customer) {
         if (customers.containsKey(customer.getId())) {
             throw new IllegalArgumentException("Duplicate customer ID.");
@@ -62,15 +89,14 @@ public class FlightBookingSystem {
         }
         customers.put(customer.getId(), customer);
     }
-    
-    public List<Customer> getCustomers() {
-    	List<Customer> out = new ArrayList<>(customers.values());
-    	return Collections.unmodifiableList(out); 
-    	}
-    
 
-     
     
-    
+    public void addBooking(Booking booking) {
+        if (bookings.containsKey(booking.getId())) {
+            throw new IllegalArgumentException("Duplicate booking ID.");
+        }
+        bookings.put(booking.getId(), booking);
+    }
+
     
 }

@@ -53,17 +53,17 @@ public class AddFlightWindow extends JFrame implements ActionListener {
         setSize(350, 220);
         JPanel topPanel = new JPanel();
         topPanel.setLayout(new GridLayout(5, 2));
-        topPanel.add(new JLabel("Flight No : "));
+        topPanel.add(new JLabel("Flight No: "));
         topPanel.add(flightNoText);
-        topPanel.add(new JLabel("Origin : "));
+        topPanel.add(new JLabel("Origin: "));
         topPanel.add(originText);
-        topPanel.add(new JLabel("Destination : "));
+        topPanel.add(new JLabel("Destination: "));
         topPanel.add(destinationText);
-        topPanel.add(new JLabel("Departure Date (YYYY-MM-DD) : "));
+        topPanel.add(new JLabel("Departure Date (YYYY-MM-DD): "));
         topPanel.add(depDateText);
-        topPanel.add(new JLabel("Capacity : "));
+        topPanel.add(new JLabel("Capacity: "));
         topPanel.add(capacityText);
-        topPanel.add(new JLabel("Price : "));
+        topPanel.add(new JLabel("Price: "));
         topPanel.add(priceText);
        
 

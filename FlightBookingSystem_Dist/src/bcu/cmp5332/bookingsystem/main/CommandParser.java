@@ -1,6 +1,9 @@
 package bcu.cmp5332.bookingsystem.main;
 
-import bcu.cmp5332.bookingsystem.commands.*; 
+import bcu.cmp5332.bookingsystem.commands.*;
+import bcu.cmp5332.bookingsystem.model.*;
+import bcu.cmp5332.bookingsystem.data.*;
+
 // Importing entire commands package at once
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -29,8 +32,6 @@ public class CommandParser {
                 System.out.print("Price (in GBP): ");
                 double price = Double.parseDouble(reader.readLine());
                 
-                
-
                 LocalDate departureDate = parseDateWithAttempts(reader);
                 // Add Flight to Flight tree
                 return new AddFlight(flightNumber, origin, destination, departureDate, capacity, price);
@@ -65,11 +66,18 @@ public class CommandParser {
                 } else if (cmd.equals("showcustomer")) {
                 	return new ShowCustomer(id);
                 }
-            } else if (parts.length == 3) {
-                
+            } else if (parts.length == 3) {		// Command [customer ID] [Flight ID]
+                int custID = Integer.parseInt(parts[1]);
+                int flightID = Integer.parseInt(parts[2]);
 
                 if (cmd.equals("addbooking")) {
-                    //TODO
+                	FlightBookingSystem system = new FlightBookingSystem(); // TODO (currently gives empty)
+                	Customer bookingCustomer = system.getCustomerByID(custID);
+                	Flight bookingFlight = system.getFlightByID(flightID);
+                	LocalDate bookingDate = bookingFlight.getDepartureDate();		// PLACEHOLDER 
+                	double bookingCost = bookingFlight.getPrice(); // TODO - IMPLEMENT CALCULATING PRICE
+                	return new AddBooking(bookingCustomer, bookingFlight, bookingDate, bookingCost);
+                	
                 } else if (cmd.equals("editbooking")) {
                     //TODO
                 } else if (cmd.equals("cancelbooking")) {
