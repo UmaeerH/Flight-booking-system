@@ -10,10 +10,36 @@ public class Booking {
     
 
     public Booking(Customer customer, Flight flight, LocalDate bookingDate) {
-        // TODO: implementation here
+        this.customer = customer;
+        this.flight = flight;
+        this.bookingDate = bookingDate;
         
     }
+
+	Customer getCustomer() {
+		return customer;
+	}
+	
+	void setCustomer(Customer newCustomer) {
+		this.customer = newCustomer;
+	}
+
+	Flight getFlight() {
+		return flight;
+	}
+
+	void setFlight(Flight newFlight) {
+		this.flight = newFlight;
+	}
+
+	LocalDate getBookingDate() {
+		return bookingDate;
+	}
+
+	void setBookingDate(LocalDate newBookingDate) {
+		this.bookingDate = newBookingDate;
+	}
     
-    // TODO: implementation of Getter and Setter methods
+    
     
 }
