@@ -41,8 +41,16 @@
 	            maxId = flightBookingSystem.getBookings().get(lastIndex).getId();
 	        }
 	        
+	        
 	        Booking booking = new Booking(++maxId, customer, flight, bookingDate, cost);
+	        try {
+	        	flightBookingSystem.getCustomerByID(customerID).addBooking(booking);
+	        }
+	        catch(FlightBookingSystemException fbse) {
+	        	System.out.println("Customer can not be booked for this flight");
+	        	return; // break
+	        }
 	        flightBookingSystem.addBooking(booking);
-	        System.out.println("Booking #" + booking.getId() + " for " + booking.getCustomer().getName() + " added.");
+	        System.out.println("Booking #" + booking.getId() + " Created.");
 	    }
 	}

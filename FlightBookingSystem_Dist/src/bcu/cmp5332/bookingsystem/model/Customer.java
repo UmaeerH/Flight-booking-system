@@ -4,6 +4,7 @@ package bcu.cmp5332.bookingsystem.model;
 import java.util.ArrayList;
 //import java.util.HashSet;
 import java.util.List;
+import bcu.cmp5332.bookingsystem.main.FlightBookingSystemException;
 
 public class Customer {
     
@@ -62,7 +63,21 @@ public class Customer {
         return new ArrayList<>(bookings);
     }
     
-    public void addBooking(Booking booking) {
-        // TODO: implementation here
+    public void addBooking(Booking booking) throws FlightBookingSystemException {
+        for (Booking existingBooking : bookings) {
+            // Check if this customer already has a booking for the same flight and date
+            if (existingBooking.getFlight().equals(booking.getFlight()) && 
+                existingBooking.getBookingDate().equals(booking.getBookingDate())) {
+                System.out.println("This booking already exists for the customer: " + booking.getFlight().getFlightNumber());
+                throw new FlightBookingSystemException("Customer is already booked for this flight: "
+                										+ booking.getFlight().getFlightNumber());
+            }
+        }
+        bookings.add(booking);
+        System.out.println("Booking added for customer: " + name + ", Flight: " + booking.getFlight().getFlightNumber());
     }
+
+
+
 }
+
