@@ -11,13 +11,14 @@ import java.io.InputStreamReader;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 
+@SuppressWarnings("unused")
 public class CommandParser {
     
     public static Command parse(String line) throws IOException, FlightBookingSystemException {
-        try {
+
+    	try {
             String[] parts = line.split(" ", 3);
             String cmd = parts[0];
-
             
             if (cmd.equals("addflight")) {
                 BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
@@ -67,16 +68,12 @@ public class CommandParser {
                 	return new ShowCustomer(id);
                 }
             } else if (parts.length == 3) {		// Command [customer ID] [Flight ID]
-                int custID = Integer.parseInt(parts[1]);
+                int customerID = Integer.parseInt(parts[1]);
                 int flightID = Integer.parseInt(parts[2]);
-
+                
                 if (cmd.equals("addbooking")) {
-                	FlightBookingSystem system = new FlightBookingSystem(); // TODO (currently gives empty)
-                	Customer bookingCustomer = system.getCustomerByID(custID);
-                	Flight bookingFlight = system.getFlightByID(flightID);
-                	LocalDate bookingDate = bookingFlight.getDepartureDate();		// PLACEHOLDER 
-                	double bookingCost = bookingFlight.getPrice(); // TODO - IMPLEMENT CALCULATING PRICE
-                	return new AddBooking(bookingCustomer, bookingFlight, bookingDate, bookingCost);
+                    return new AddBooking(customerID, flightID);
+
                 	
                 } else if (cmd.equals("editbooking")) {
                     //TODO
