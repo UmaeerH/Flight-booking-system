@@ -20,7 +20,7 @@ public class CommandParser {
             String[] parts = line.split(" ", 3);
             String cmd = parts[0];
             
-            if (cmd.equals("addflight")) {
+            if (cmd.equalsIgnoreCase("addflight")) {
                 BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
                 System.out.print("Flight Number: ");
                 String flightNumber = reader.readLine();
@@ -37,7 +37,7 @@ public class CommandParser {
                 // Add Flight to Flight tree
                 return new AddFlight(flightNumber, origin, destination, departureDate, capacity, price);
                 
-            } else if (cmd.equals("addcustomer")) {
+            } else if (cmd.equalsIgnoreCase("addcustomer")) {
             	BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
             	System.out.print("Customer\'s Name: ");					// Take in customer name and phone
             	String customerName = reader.readLine();
@@ -48,36 +48,36 @@ public class CommandParser {
             	// Add customer to customer tree
             	return new AddCustomer(customerName, customerPhone, customerEmail);
             	
-            } else if (cmd.equals("loadgui")) {
+            } else if (cmd.equalsIgnoreCase("loadgui")) {
                 return new LoadGUI();
                 
             } else if (parts.length == 1) {
-                if (line.equals("listflights")) {
+                if (line.equalsIgnoreCase("listflights")) {
                     return new ListFlights();
-                } else if (line.equals("listcustomers")) {
+                } else if (line.equalsIgnoreCase("listcustomers")) {
                 	return new ListCustomers();
-                } else if (line.equals("help")) {
+                } else if (line.equalsIgnoreCase("help")) {
                     return new Help();
                 }
             } else if (parts.length == 2) {
                 int id = Integer.parseInt(parts[1]);
 
-                if (cmd.equals("showflight")) {
+                if (cmd.equalsIgnoreCase("showflight")) {
                 	return new ShowFlight(id);
-                } else if (cmd.equals("showcustomer")) {
+                } else if (cmd.equalsIgnoreCase("showcustomer")) {
                 	return new ShowCustomer(id);
                 }
             } else if (parts.length == 3) {		// Command [customer ID] [Flight ID]
                 int customerID = Integer.parseInt(parts[1]);
                 int flightID = Integer.parseInt(parts[2]);
                 
-                if (cmd.equals("addbooking")) {
+                if (cmd.equalsIgnoreCase("addbooking")) {
                     return new AddBooking(customerID, flightID);
 
                 	
-                } else if (cmd.equals("editbooking")) {
+                } else if (cmd.equalsIgnoreCase("editbooking")) {
                     //TODO
-                } else if (cmd.equals("cancelbooking")) {
+                } else if (cmd.equalsIgnoreCase("cancelbooking")) {
                 	//TODO   
                 }
             }
