@@ -18,7 +18,7 @@ public class ShowCustomer implements Command {
         for (Booking booking : customer.getBookings()) {
         	if(booking.getCancelled() == false) {
         		System.out.println(
-        						"=======NOT CANCELLED==========\n" +
+        						"=================\n" +
         						"Booking ID: " + booking.getId() + // I hate printing large bits
         						", Date: " + booking.getBookingDate() + ", Cost: £" + booking.getCost() 
         						+ "\n" + "Flight: " + booking.getFlight().getFlightNumber());
@@ -27,7 +27,7 @@ public class ShowCustomer implements Command {
         		System.out.println(
 						"========CANCELLED=========\n" +
 						"Booking ID: " + booking.getId() + // I hate printing large bits
-						", Date: " + booking.getBookingDate() + ", Cost: £" + booking.getCost() 
+						", Date: CANCELLED" + ", Cost: £" + booking.getCost() + "(cancellation charge)"
 						+ "\n" + "Flight: " + booking.getFlight().getFlightNumber());
         	}
         }

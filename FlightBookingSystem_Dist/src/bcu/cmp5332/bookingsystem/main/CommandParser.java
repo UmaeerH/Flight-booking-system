@@ -66,7 +66,9 @@ public class CommandParser {
                 	return new ShowFlight(id);
                 } else if (cmd.equalsIgnoreCase("showcustomer")) {
                 	return new ShowCustomer(id);
-                }
+                } else if (cmd.equalsIgnoreCase("cancelbooking")) {
+                	return new CancelBooking(id);
+                	}
             } else if (parts.length == 3) {		// Command [customer ID] [Flight ID]
                 int customerID = Integer.parseInt(parts[1]);
                 int flightID = Integer.parseInt(parts[2]);
@@ -77,8 +79,6 @@ public class CommandParser {
                 	
                 } else if (cmd.equalsIgnoreCase("editbooking")) {
                     //TODO
-                } else if (cmd.equalsIgnoreCase("cancelbooking")) {
-                	//TODO   
                 }
             }
         } catch (NumberFormatException ex) {
