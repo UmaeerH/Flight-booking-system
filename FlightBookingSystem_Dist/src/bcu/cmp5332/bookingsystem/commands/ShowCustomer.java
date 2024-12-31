@@ -16,11 +16,20 @@ public class ShowCustomer implements Command {
         Customer customer = flightBookingSystem.getCustomerByID(id);
         System.out.println(customer.getDetailsShort());
         for (Booking booking : customer.getBookings()) {
-        	System.out.println(
-        						"=================\n" +
+        	if(booking.getCancelled() == false) {
+        		System.out.println(
+        						"=======NOT CANCELLED==========\n" +
         						"Booking ID: " + booking.getId() + // I hate printing large bits
         						", Date: " + booking.getBookingDate() + ", Cost: £" + booking.getCost() 
         						+ "\n" + "Flight: " + booking.getFlight().getFlightNumber());
+        	}
+        	else {
+        		System.out.println(
+						"========CANCELLED=========\n" +
+						"Booking ID: " + booking.getId() + // I hate printing large bits
+						", Date: " + booking.getBookingDate() + ", Cost: £" + booking.getCost() 
+						+ "\n" + "Flight: " + booking.getFlight().getFlightNumber());
+        	}
         }
         System.out.println("================= End of Flights");
 

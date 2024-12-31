@@ -9,6 +9,7 @@ public class Booking {
     private Flight flight;
     private LocalDate bookingDate;
 	private double cost; // Checkout price
+	private boolean cancelled;
     
 
     public Booking(int id, Customer customer, Flight flight, LocalDate bookingDate, double cost) {
@@ -17,6 +18,7 @@ public class Booking {
         this.flight = flight;
         this.bookingDate = bookingDate;
         this.cost = cost;
+        this.cancelled = false;
     }
 
     public int getId() {
@@ -57,6 +59,14 @@ public class Booking {
 	
 	public void setCost(double newCost) {
 		this.cost = newCost;
+	}
+	
+	public boolean getCancelled() {
+		return cancelled;
+	}
+	
+	public void setCancelled(boolean newCancelled) {
+		this.cancelled = newCancelled;
 	}
     
     
