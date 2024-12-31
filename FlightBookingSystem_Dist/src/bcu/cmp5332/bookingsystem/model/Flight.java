@@ -127,5 +127,14 @@ public class Flight {
     
     public void addPassenger(Customer customer) {
     	passengers.add(customer);
+    	freeCapacity--;
+    }
+    
+    public void removePassenger(Customer customer) throws FlightBookingSystemException { 
+    	if (!passengers.contains(customer)) { 
+    		throw new FlightBookingSystemException("Customer not found in this flight.");
+    	} 
+    	passengers.remove(customer); 
+    	freeCapacity++;
     }
 }

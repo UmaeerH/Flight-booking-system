@@ -15,6 +15,7 @@ public class CancelBooking implements Command {
 	public void execute(FlightBookingSystem flightBookingSystem) throws FlightBookingSystemException {
 		Booking booking = flightBookingSystem.getBookingByID(id);
 		booking.setCancelled(true);
+		booking.getFlight().removePassenger(booking.getCustomer());
 		System.out.println("Booking #" + booking.getId() + " has been cancelled");
 	}
 }
