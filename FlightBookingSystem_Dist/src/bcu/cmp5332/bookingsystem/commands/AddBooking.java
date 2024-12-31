@@ -45,6 +45,7 @@
 	        Booking booking = new Booking(++maxId, customer, flight, bookingDate, cost);
 	        try {
 	        	flightBookingSystem.getCustomerByID(customerID).addBooking(booking);
+	        	flightBookingSystem.getFlightByID(flightID).addPassenger(customer);
 	        }
 	        catch(FlightBookingSystemException fbse) {
 	        	System.out.println("Customer can not be booked for this flight");

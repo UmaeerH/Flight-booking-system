@@ -17,6 +17,7 @@ public class Flight {
     private String destination;
     private LocalDate departureDate;
     private int capacity;
+    private int freeCapacity;
     private double price;
 
     private final Set<Customer> passengers;
@@ -32,6 +33,8 @@ public class Flight {
         this.price = price;
         
         passengers = new HashSet<>();
+        
+        this.freeCapacity = (capacity - passengers.size()); // Initial capacity - 1 per customer
     }
 
     public int getId() {
@@ -89,23 +92,40 @@ public class Flight {
     public void setPrice(double newPrice) {
     	this.price = newPrice;
     }
+    
+    public int getFreeCapacity() {
+    	return freeCapacity;
+    }
+    
+    public void setFreeCapacity(int newFree) {
+    	this.freeCapacity = newFree;
+    }
 
     public List<Customer> getPassengers() {
         return new ArrayList<>(passengers);
     }
+    
 	
     public String getDetailsShort() {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/YYYY");
         return "Flight #" + id + " - " + flightNumber + " - " + origin + " to " 
-                + destination + " on " + departureDate.format(dtf);
+                + destination + " on " + departureDate.format(dtf)
+                + "\nSeats filled: " + passengers.size() + "/" + capacity;
     }
 
-    public String getDetailsLong() {
-        // TODO: implementation here
-        return null;
+    public String getDetailsLong() { 
+    	DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/YYYY"); 
+    	StringBuilder returnString = new StringBuilder("Flight #" + id + " - " + flightNumber + " - " 
+    			+ origin + " to " + destination + " on " + departureDate.format(dtf) + "\nSeats filled: "
+    			+ passengers.size() + "/" + capacity + "\n"); 
+    	
+    	for(Customer customer : passengers) { 
+    		returnString.append(customer.getName().toString()).append("\n");
+    	} 
+    	return returnString.toString(); 
     }
     
-    public void addPassenger(Customer passenger) {
-        
+    public void addPassenger(Customer customer) {
+    	passengers.add(customer);
     }
 }

@@ -64,6 +64,8 @@ public class CommandParser {
 
                 if (cmd.equalsIgnoreCase("showflight")) {
                 	return new ShowFlight(id);
+                } else if (cmd.equalsIgnoreCase("showflightdetailed")) {
+                	return new ShowFlightDetailed(id);
                 } else if (cmd.equalsIgnoreCase("showcustomer")) {
                 	return new ShowCustomer(id);
                 } else if (cmd.equalsIgnoreCase("cancelbooking")) {
