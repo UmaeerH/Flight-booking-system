@@ -12,11 +12,11 @@ public class Booking {
 	private boolean cancelled;
     
 
-    public Booking(int id, Customer customer, Flight flight, LocalDate bookingDate, double cost) {
+    public Booking(int id, Customer customer, Flight flight, double cost) {
         this.bookingID = id;
     	this.customer = customer;
         this.flight = flight;
-        this.bookingDate = bookingDate;
+        this.bookingDate = LocalDate.now();
         this.cost = cost;
         this.cancelled = false;
     }

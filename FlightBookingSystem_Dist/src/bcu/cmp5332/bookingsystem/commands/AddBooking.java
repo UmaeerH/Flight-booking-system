@@ -21,7 +21,7 @@
 	        
 	        this.customer = null; 
 	        this.flight = null; 
-	        this.bookingDate = null; 
+	        this.bookingDate = LocalDate.now(); 
 	        this.cost = 0.0;
 	        
 	    }
@@ -31,7 +31,6 @@
 	    	// Retrieve Customer and Flight by their IDs
 	        this.customer = flightBookingSystem.getCustomerByID(customerID);
 	        this.flight = flightBookingSystem.getFlightByID(flightID);
-	        this.bookingDate = flight.getDepartureDate();
 	        this.cost = flight.getPrice();
 	        
 	        
@@ -42,7 +41,7 @@
 	        }
 	        
 	        
-	        Booking booking = new Booking(++maxId, customer, flight, bookingDate, cost);
+	        Booking booking = new Booking(++maxId, customer, flight, cost);
 	        try {
 	        	flightBookingSystem.getCustomerByID(customerID).addBooking(booking);
 	        	flightBookingSystem.getFlightByID(flightID).addPassenger(customer);
