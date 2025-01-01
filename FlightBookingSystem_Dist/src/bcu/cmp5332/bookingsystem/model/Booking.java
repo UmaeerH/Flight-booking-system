@@ -68,6 +68,15 @@ public class Booking {
 	public void setCancelled(boolean newCancelled) {
 		this.cancelled = newCancelled;
 	}
+	
+	// Additional getters for loading/saving purposes
+	public int getCustomerID() {
+		return this.customer.getId();
+	}
+	
+	public int getFlightID() {
+		return this.flight.getId();
+	}
     
     
     

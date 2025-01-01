@@ -1,7 +1,5 @@
 	package bcu.cmp5332.bookingsystem.commands;
 	
-	import java.time.LocalDate;
-	
 	import bcu.cmp5332.bookingsystem.main.FlightBookingSystemException;
 	import bcu.cmp5332.bookingsystem.model.*;
 	import bcu.cmp5332.bookingsystem.model.FlightBookingSystem;
@@ -13,15 +11,12 @@
 	    private Flight flight;
 	    private final int flightID;
 	    private double cost;
-	    private LocalDate bookingDate;
 	
 	    public AddBooking(int customerID ,int flightID) {
 	        this.customerID = customerID;
 	        this.flightID = flightID;
-	        
 	        this.customer = null; 
 	        this.flight = null; 
-	        this.bookingDate = LocalDate.now(); 
 	        this.cost = 0.0;
 	        
 	    }

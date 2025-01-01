@@ -107,20 +107,22 @@ public class Flight {
     
 	
     public String getDetailsShort() {
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/YYYY");
         return "Flight #" + id + " - " + flightNumber + " - " + origin + " to " 
-                + destination + " on " + departureDate.format(dtf)
+                + destination + " on " + departureDate
                 + "\nSeats filled: " + passengers.size() + "/" + capacity;
     }
 
     public String getDetailsLong() { 
-    	DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/YYYY"); 
-    	StringBuilder returnString = new StringBuilder("Flight #" + id + " - " + flightNumber + " - " 
-    			+ origin + " to " + destination + " on " + departureDate.format(dtf) + "\nSeats filled: "
+    	StringBuilder returnString = new StringBuilder("Flight #" + id + "\nFlight No: " + flightNumber + "\nOrigin: " 
+    			+ origin + "\nDestination: " + destination + "\nDeparture Date: " + departureDate + 
+    			"\n--------------" + "\nPassenger(s): "
     			+ passengers.size() + "/" + capacity + "\n"); 
     	
-    	for(Customer customer : passengers) { 
-    		returnString.append(customer.getName().toString()).append("\n");
+    	
+    	for(Customer customer : passengers) {
+    		String customerString = "* ID: " + customer.getId() + " - " + customer.getName() + " - "
+    		+ customer.getPhone();
+    		returnString.append(customerString).append("\n");
     	} 
     	return returnString.toString(); 
     }
