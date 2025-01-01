@@ -92,7 +92,7 @@ public class CommandParser {
     
     private static LocalDate parseDateWithAttempts(BufferedReader br, int attempts) throws IOException, FlightBookingSystemException {
         if (attempts < 1) {
-            throw new IllegalArgumentException("Number of attempts should be higher that 0");
+            throw new IllegalArgumentException("Number of attempts should be higher than 0");
         }
         while (attempts > 0) {
             attempts--;

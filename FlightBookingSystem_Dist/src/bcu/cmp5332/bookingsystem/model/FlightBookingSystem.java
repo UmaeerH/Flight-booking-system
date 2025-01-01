@@ -6,7 +6,7 @@ import java.util.*;
 
 public class FlightBookingSystem {
     
-    private final LocalDate systemDate = LocalDate.parse("2024-11-11");
+    private final LocalDate systemDate = LocalDate.now();
     
     private final Map<Integer, Customer> customers = new TreeMap<>();
     private final Map<Integer, Flight> flights = new TreeMap<>();
