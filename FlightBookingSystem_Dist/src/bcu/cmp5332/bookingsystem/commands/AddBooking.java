@@ -1,5 +1,6 @@
 	package bcu.cmp5332.bookingsystem.commands;
 	
+	import java.time.LocalDate;
 	import bcu.cmp5332.bookingsystem.main.FlightBookingSystemException;
 	import bcu.cmp5332.bookingsystem.model.*;
 	import bcu.cmp5332.bookingsystem.model.FlightBookingSystem;
@@ -11,6 +12,8 @@
 	    private Flight flight;
 	    private final int flightID;
 	    private double cost;
+	    private LocalDate bookingDate;
+	    private boolean cancelled;
 	
 	    public AddBooking(int customerID ,int flightID) {
 	        this.customerID = customerID;
@@ -18,7 +21,8 @@
 	        this.customer = null; 
 	        this.flight = null; 
 	        this.cost = 0.0;
-	        
+	        this.bookingDate = LocalDate.now();
+	        this.cancelled = false;
 	    }
 	
 	    @Override
@@ -36,7 +40,7 @@
 	        }
 	        
 	        
-	        Booking booking = new Booking(++maxId, customer, flight, cost);
+	        Booking booking = new Booking(++maxId, customer, flight, cost, bookingDate, cancelled);
 	        try {
 	        	flightBookingSystem.getCustomerByID(customerID).addBooking(booking);
 	        	flightBookingSystem.getFlightByID(flightID).addPassenger(customer);
@@ -46,6 +50,6 @@
 	        	return; // break
 	        }
 	        flightBookingSystem.addBooking(booking);
-	        System.out.println("Booking #" + booking.getId() + " Created.");
+	        
 	    }
 	}

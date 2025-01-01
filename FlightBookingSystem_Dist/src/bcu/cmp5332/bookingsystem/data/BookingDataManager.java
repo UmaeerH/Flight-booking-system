@@ -1,12 +1,14 @@
 package bcu.cmp5332.bookingsystem.data;
 
 import bcu.cmp5332.bookingsystem.main.FlightBookingSystemException;
-import bcu.cmp5332.bookingsystem.model.Booking;
-import bcu.cmp5332.bookingsystem.model.FlightBookingSystem;
+import bcu.cmp5332.bookingsystem.model.*;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.time.LocalDate;
+import java.util.Scanner;
 
 public class BookingDataManager implements DataManager {
     
@@ -14,8 +16,38 @@ public class BookingDataManager implements DataManager {
 
     @Override
     public void loadData(FlightBookingSystem fbs) throws IOException, FlightBookingSystemException {
-        // TODO: implementation here
-    	System.out.println("Loading Booking placeholder");
+    	try (Scanner sc = new Scanner(new File(RESOURCE))) {
+            int line_idx = 1;
+            while (sc.hasNextLine()) {
+                String line = sc.nextLine();
+                String[] properties = line.split(SEPARATOR, -1);
+                try {
+                    int id = Integer.parseInt(properties[0]);
+                    int custID = Integer.parseInt(properties[1]);
+                    int flightID = Integer.parseInt(properties[2]);
+                    LocalDate bookingDate = LocalDate.parse(properties[3]);
+                    double cost = Double.parseDouble(properties[4]);
+                    boolean cancelled = Boolean.parseBoolean(properties[5]);
+                    // Search for customer and flight with their IDs
+                    Customer customer = fbs.getCustomerByID(custID);
+                    Flight flight = fbs.getFlightByID(flightID);
+                    
+                    Booking booking = new Booking(id, customer, flight, cost, bookingDate, cancelled);                   
+                    customer.addBooking(booking);
+                    fbs.addBooking(booking);
+                    if(cancelled==false) {
+                    	flight.addPassenger(customer);
+                    }
+                    
+                } catch (NumberFormatException ex) {
+                    throw new FlightBookingSystemException("Unable to parse book id " + properties[0] + " on line " + line_idx
+                        + "\nError: " + ex);
+                }
+                line_idx++;
+            }
+        }
+    	
+    	
     }
 
     @Override

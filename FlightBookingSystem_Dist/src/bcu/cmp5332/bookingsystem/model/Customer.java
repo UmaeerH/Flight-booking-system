@@ -59,6 +59,13 @@ public class Customer {
     	return "Customer: #" + id + " - " + name + "\t | " + phone + " | " + email;
     }
     
+    public String getDetailsLong() {
+    	String returnString = "Customer #" + id
+    						+ "\nName: "   + name
+    						+ "\nContact: "  + phone + " | " + email;
+    	return returnString;
+    }
+    
     public List<Booking> getBookings() {
         return new ArrayList<>(bookings);
     }
@@ -74,7 +81,6 @@ public class Customer {
             }
         }
         bookings.add(booking);
-        System.out.println("Booking added for customer: " + name + ", Flight: " + booking.getFlight().getFlightNumber());
     }
 
 
