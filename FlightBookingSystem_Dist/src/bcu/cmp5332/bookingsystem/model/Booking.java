@@ -4,14 +4,13 @@ import java.time.LocalDate;
 
 public class Booking {
     
-	private static int bookingID;
-    private static Customer customer;
+	private int bookingID;
+    private Customer customer;
     private Flight flight;
     private LocalDate bookingDate;
 	private double cost; // Checkout price
 	private boolean cancelled;
     
-	@SuppressWarnings("static-access")
     public Booking(int id, Customer customer, Flight flight, double cost, LocalDate bookingDate, boolean cancelled) {
         this.bookingID = id;
     	this.customer = customer;
@@ -21,20 +20,18 @@ public class Booking {
         this.cancelled = cancelled;
     }
 
-    public static int getId() {
+    public int getId() {
     	return bookingID;
     }
     
-	@SuppressWarnings("static-access")
 	public void setId(int newID) {
     	this.bookingID = newID;
     }
     
-	public static Customer getCustomer() {
+	public Customer getCustomer() {
 		return customer;
 	}
 	
-	@SuppressWarnings("static-access")
 	public void setCustomer(Customer newCustomer) {
 		this.customer = newCustomer;
 	}

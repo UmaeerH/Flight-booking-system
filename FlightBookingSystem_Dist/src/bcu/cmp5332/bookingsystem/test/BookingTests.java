@@ -22,14 +22,12 @@ public class BookingTests {
         testBooking = new Booking(1, testCustomer, testFlight, 500.0, LocalDate.now(), false);
     }
 
-    @SuppressWarnings("static-access")
 	@Test
     public void getIdTest() {
         // TODO: Implement test for getId method
     	assertEquals(1, testBooking.getId());
     }
 
-    @SuppressWarnings("static-access")
 	@Test
     public void getCustomerTest() {
         // TODO: Implement test for getCustomer method
@@ -72,7 +70,7 @@ public class BookingTests {
     @Test
     public void getCancelledTest() {
         // TODO: Implement test for getCancelled method
-    	// assertTrue("Flight is not cancelled.", testBooking.getCancelled());
+    	// assertTrue(false, testBooking.getCancelled());
     	
     	assertEquals(false, testBooking.getCancelled());
     }
