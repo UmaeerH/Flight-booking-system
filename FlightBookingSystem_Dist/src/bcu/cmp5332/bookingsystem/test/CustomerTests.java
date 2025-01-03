@@ -1,5 +1,6 @@
 package bcu.cmp5332.bookingsystem.test;
 import java.time.LocalDate;
+import java.util.Collections;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -7,66 +8,83 @@ import org.junit.Test;
 import bcu.cmp5332.bookingsystem.main.FlightBookingSystemException;
 import bcu.cmp5332.bookingsystem.model.*;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 public class CustomerTests {
 	private Flight testFlight;
 	private Customer testCustomer;
+	private Booking testBooking;
 	@Before
     public void setUp() {
         testFlight = new Flight(50, "AA123", "London", "New York", LocalDate.now(), 100, 500.0);
         testCustomer = new Customer(999, "Choi Yu-Jin", "42894829", "Choi@gmail.com");
+        testBooking = new Booking(1, testCustomer, testFlight, 500.0, LocalDate.now(), false);
     }
 	
 	
     @Test
     public void getIDTest() {
-        // TODO: Implement test for getID method
+        assertEquals(999, testCustomer.getId());
     }
 
     @Test
     public void setIDTest() {
-        // TODO: Implement test for setID method
+        testCustomer.setId(50);
+        assertEquals(50, testCustomer.getId());
     }
 	
 
 	@Test
     public void getNameTest() {
-        assert (testCustomer.getName().equals("Choi Yu-Jin"));
+        //assert (testCustomer.getName().equals("Choi Yu-Jin"));
+		assertEquals("Choi Yu-Jin", testCustomer.getName());
     }
 	
     @Test
     public void setNameTest() {
-        // TODO: Implement test for setName method
+        testCustomer.setName("Garry Kasparov");
+        assertEquals("Garry Kasparov", testCustomer.getName());
     }
 
 	@Test
 	public void getPhoneTest() {
-		assert (testCustomer.getPhone().equals("42894829"));
+		assertEquals("42894829", testCustomer.getPhone());
 	}
 	
     @Test
     public void setPhoneTest() {
-        // TODO: Implement test for setPhone method
+    	testCustomer.setPhone("123123123");
+    	assertEquals("123123123", testCustomer.getPhone());
     }
 
     @Test
     public void getEmailTest() {
-        // TODO: Implement test for getEmail method
+    	assertEquals("Choi@gmail.com", testCustomer.getEmail());
     }
 
     @Test
     public void setEmailTest() {
-        // TODO: Implement test for setEmail method
+        testCustomer.setEmail("newMail@mail.com");
+        assertEquals("newMail@mail.com", testCustomer.getEmail());
     }
 
     @Test			//it should be empty
     public void getBookings() {
-        // TODO: Implement test for getBookings method
+    	assertEquals(Collections.emptyList(), testCustomer.getBookings());
     }
 
-    @Test(expected = FlightBookingSystemException.class)
+    
+    @Test // Correctly add a booking
     public void addBooking() throws FlightBookingSystemException {
-        // TODO: Implement test for addBooking method
-        // This test should check for duplicate bookings and ensure an exception is thrown
+        testCustomer.addBooking(testBooking);
+        assertEquals(1, testCustomer.getBookings().size());
+    }
+    
+    
+    @Test(expected = FlightBookingSystemException.class)	
+    public void addBookingFail() throws FlightBookingSystemException {
+        testCustomer.addBooking(testBooking);				
+        testCustomer.addBooking(testBooking);				// Adding dupe booking, should throw exception
     }
 	
 	
