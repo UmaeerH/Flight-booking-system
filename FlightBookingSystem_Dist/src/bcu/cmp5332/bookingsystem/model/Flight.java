@@ -17,7 +17,6 @@ public class Flight {
     private String destination;
     private LocalDate departureDate;
     private int capacity;
-    private int freeCapacity;
     private double price;
 
     private final Set<Customer> passengers;
@@ -33,8 +32,7 @@ public class Flight {
         this.price = price;
         
         passengers = new HashSet<>();
-        
-        this.freeCapacity = (capacity - passengers.size()); // Initial capacity - 1 per customer
+
     }
 
     public int getId() {
@@ -94,12 +92,10 @@ public class Flight {
     }
     
     public int getFreeCapacity() {
-    	return freeCapacity;
+    	int returnCap = (capacity - passengers.size());
+    	return returnCap;
     }
     
-    public void setFreeCapacity(int newFree) {
-    	this.freeCapacity = newFree;
-    }
 
     public List<Customer> getPassengers() {
         return new ArrayList<>(passengers);
@@ -129,7 +125,6 @@ public class Flight {
     
     public void addPassenger(Customer customer) {
     	passengers.add(customer);
-    	freeCapacity--;
     }
     
     public void removePassenger(Customer customer) throws FlightBookingSystemException { 
@@ -137,6 +132,5 @@ public class Flight {
     		throw new FlightBookingSystemException("Customer not found in this flight.");
     	} 
     	passengers.remove(customer); 
-    	freeCapacity++;
     }
 }

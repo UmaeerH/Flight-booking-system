@@ -32,6 +32,9 @@
 	        this.flight = flightBookingSystem.getFlightByID(flightID);
 	        this.cost = flight.getPrice();
 	        
+	        if (this.flight.getFreeCapacity() == 0) {
+	        	throw new FlightBookingSystemException("Flight is full");
+	        }
 	        
 	    	int maxId = 0;
 	        if (flightBookingSystem.getBookings().size() > 0) {
