@@ -3,21 +3,20 @@ package bcu.cmp5332.bookingsystem.gui;
 import bcu.cmp5332.bookingsystem.data.FlightBookingSystemData;
 import bcu.cmp5332.bookingsystem.main.FlightBookingSystemException;
 import bcu.cmp5332.bookingsystem.model.*;
+
+import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JFrame;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.UIManager;
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 @SuppressWarnings("unused")
 
 public class MainWindow extends JFrame implements ActionListener {
@@ -57,7 +56,7 @@ public class MainWindow extends JFrame implements ActionListener {
     }
 
     /**
-     * Initialize the contents of the frame.
+     * Initialise the contents of the frame.
      */
     private void initialize() {
 
@@ -148,7 +147,6 @@ public class MainWindow extends JFrame implements ActionListener {
     }
 
 
-
     @Override
     public void actionPerformed(ActionEvent ae) {
 
@@ -221,15 +219,41 @@ public class MainWindow extends JFrame implements ActionListener {
             data[i][3] = customer.getEmail();
             data[i][4] = customer.getBookings().size();
         }
+        
+        DefaultTableModel model = new DefaultTableModel(data, columns) { 
+    		private static final long serialVersionUID = 13244233242L;
+    		@Override 
+        	public boolean isCellEditable(int row, int column) {
+        		return false; // All cells are not editable 
+        		} 
+        	};
 
-        JTable table = new JTable(data, columns);
+        JTable table = new JTable(model);
         table.getColumnModel().getColumn(0).setPreferredWidth(20);
         table.getColumnModel().getColumn(4).setPreferredWidth(20); 	//ID and free seats are now smaller
+        
+        table.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if (e.getClickCount() == 2) { // Double-click detected
+                    int row = table.getSelectedRow();
+                    if (row != -1) {
+                        int customerId = (int) table.getValueAt(row, 0);
+                        try {
+							CustomerDetailsWindow(customerId);
+						} catch (FlightBookingSystemException er) {
+							er.printStackTrace();
+						}
+                    }
+                }
+            }
+        });
+
         this.getContentPane().removeAll();
         this.getContentPane().add(new JScrollPane(table));
         this.revalidate();
     }
-    
+        
     public void displayBookings() {
         List<Booking> bookinglistFull = fbs.getBookings();
         List<Booking> bookinglist = new ArrayList<>();
@@ -240,7 +264,8 @@ public class MainWindow extends JFrame implements ActionListener {
         	}
         }
         // headers for the table
-        String[] columns = new String[]{"Booking ID", "Created On:", "CustomerID", "CustomerName", "FlightID", "Flight No"};
+        String[] columns = new String[]{"Booking ID", "Created On:", "CustomerID", 
+        		"CustomerName", "FlightID", "Flight No"};
 
         Object[][] data = new Object[bookinglist.size()][6];
         for (int i = 0; i < bookinglist.size(); i++) {
@@ -264,8 +289,25 @@ public class MainWindow extends JFrame implements ActionListener {
         this.revalidate();
     }
     
-    
-    
+    // Window that pops up with a customer is double clicked. Works identical to displaying customer in CLI
+    private void CustomerDetailsWindow(int customerId) throws FlightBookingSystemException {
+        Customer customer = fbs.getCustomerByID(customerId);
+        JFrame frame = new JFrame("Customer Details");
+        JPanel panel = new JPanel(new BorderLayout());
+        
+        JTextArea textArea = new JTextArea();
+        textArea.setText(fbs.displayCustomer(customer));
+        textArea.setEditable(false);
+        textArea.setBackground(new Color(225, 228, 252));
+
+        panel.add(new JLabel("Customer Details:"), BorderLayout.NORTH);
+        panel.add(new JScrollPane(textArea), BorderLayout.CENTER);
+
+        frame.getContentPane().add(panel);
+        frame.setSize(500, 400);
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
+    }
     
     
     

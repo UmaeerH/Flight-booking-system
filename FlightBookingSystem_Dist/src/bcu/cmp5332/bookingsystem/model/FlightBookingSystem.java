@@ -97,6 +97,40 @@ public class FlightBookingSystem {
         }
         bookings.put(booking.getId(), booking);
     }
+    
+    public String displayCustomer(Customer customer) {
+    	StringBuilder returnString = new StringBuilder();
+    	returnString.append(customer.getDetailsLong());
+        if (customer.getBookings().size() !=0) {
+        	returnString.append("\n-------------------\nBookings:\n");
+        	int bookingAmt = 0;
+			for (Booking booking : customer.getBookings()) {
+				if (!booking.getCancelled()) {
+	                bookingAmt++;
+	                returnString.append("================\n")
+	                  .append("Booking ID: ").append(booking.getId())
+	                  .append(", Booking Date: ").append(booking.getBookingDate())
+	                  .append(", Cost: £").append(booking.getCost())
+	                  .append("\nFlight: ").append(booking.getFlight().getFlightNumber())
+	                  .append(" : ").append(booking.getFlight().getOrigin())
+	                  .append(" to ").append(booking.getFlight().getDestination()).append("\n");
+	            } else {
+	                returnString.append("========CANCELLED========\n")
+	                  .append("Booking ID: ").append(booking.getId())
+	                  .append(", Date: CANCELLED")
+	                  .append(", Cost: £").append(booking.getCost()).append(" (cancellation charge)")
+	                  .append("\nFlight: ").append(booking.getFlight().getFlightNumber())
+	                  .append(" : ").append(booking.getFlight().getOrigin())
+	                  .append(" to ").append(booking.getFlight().getDestination()).append("\n");
+	            }
+
+        	}
+	        returnString.append("================\n").append(bookingAmt).append(" active booking(s)");
+        } else {
+            returnString.append("No active bookings");
+        }
+        return returnString.toString();
+    }
 
     
 }
