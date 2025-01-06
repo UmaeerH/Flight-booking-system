@@ -1,6 +1,6 @@
 package bcu.cmp5332.bookingsystem.gui;
 
-import bcu.cmp5332.bookingsystem.commands.AddCustomer;
+import bcu.cmp5332.bookingsystem.commands.AddBooking;
 import bcu.cmp5332.bookingsystem.commands.Command;
 import bcu.cmp5332.bookingsystem.main.FlightBookingSystemException;
 import java.awt.BorderLayout;
@@ -17,18 +17,17 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 
-public class AddCustomerWindow extends JFrame implements ActionListener {
-
-    private static final long serialVersionUID = -2525258430273182291L;
+public class AddBookingWindow extends JFrame implements ActionListener {
+	
+    private static final long serialVersionUID = -252432525878027291L;
 	private MainWindow mw;
-    private JTextField custNameText = new JTextField();
-    private JTextField custPhoneText = new JTextField();
-    private JTextField custEmailText = new JTextField();
+    private JTextField customerIDText = new JTextField();
+    private JTextField flightIDText = new JTextField();
 
     private JButton addBtn = new JButton("Add");
     private JButton cancelBtn = new JButton("Cancel");
 
-    public AddCustomerWindow(MainWindow mw) {
+    public AddBookingWindow(MainWindow mw) {
         this.mw = mw;
         initialize();
     }
@@ -45,17 +44,15 @@ public class AddCustomerWindow extends JFrame implements ActionListener {
 
         }
 
-        setTitle("Add a New Customer");
+        setTitle("Create a new booking");
 
         setSize(350, 220);
         JPanel topPanel = new JPanel();
         topPanel.setLayout(new GridLayout(6, 2));
-        topPanel.add(new JLabel("Customer Name: "));
-        topPanel.add(custNameText);
-        topPanel.add(new JLabel("Customer Number: "));
-        topPanel.add(custPhoneText);
-        topPanel.add(new JLabel("Email Address: "));
-        topPanel.add(custEmailText);
+        topPanel.add(new JLabel("Customer ID: "));
+        topPanel.add(customerIDText);
+        topPanel.add(new JLabel("Flight ID: "));
+        topPanel.add(flightIDText);
        
 
         JPanel bottomPanel = new JPanel();
@@ -87,18 +84,19 @@ public class AddCustomerWindow extends JFrame implements ActionListener {
 
     private void addBook() {
         try {
-            String customerName = custNameText.getText();
-            String customerNumb = custPhoneText.getText();
-            String customerEmail = custEmailText.getText();
-
+            String str_custID = customerIDText.getText();
+            String str_flightID = flightIDText.getText();
+            
             // parsing the data
+            int custID = Integer.parseInt(str_custID);
+            int flightID = Integer.parseInt(str_flightID);
 
-            // create and execute the AddCustomer Command
-            Command addCustomer = new AddCustomer(customerName, customerNumb, customerEmail);
-            addCustomer.execute(mw.getFlightBookingSystem());
+            // create and execute the AddFlight Command
+            Command addBooking = new AddBooking(custID, flightID);
+            addBooking.execute(mw.getFlightBookingSystem());
             // refresh the view with the list of flights
-            mw.displayCust();
-            // hide (close) the AddCustomer
+            mw.displayFlights();
+            // hide (close) the AddFlightWindow
             this.setVisible(false);
         } catch (FlightBookingSystemException ex) {
             JOptionPane.showMessageDialog(this, ex, "Error", JOptionPane.ERROR_MESSAGE);

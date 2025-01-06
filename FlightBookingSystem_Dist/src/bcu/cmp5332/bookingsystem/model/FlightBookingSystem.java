@@ -62,7 +62,7 @@ public class FlightBookingSystem {
     }
     
     // ADD METHODS
-    
+
     public void addFlight(Flight flight) throws FlightBookingSystemException {
         if (flights.containsKey(flight.getId())) {
             throw new IllegalArgumentException("Duplicate flight ID.");

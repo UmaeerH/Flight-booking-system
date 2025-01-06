@@ -6,6 +6,7 @@ import bcu.cmp5332.bookingsystem.model.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -34,6 +35,7 @@ public class MainWindow extends JFrame implements ActionListener {
     private JMenuItem flightsAdd;
     private JMenuItem flightsDel;
     
+    private JMenuItem bookingsView;
     private JMenuItem bookingsIssue;
     private JMenuItem bookingsUpdate;
     private JMenuItem bookingsCancel;
@@ -97,9 +99,11 @@ public class MainWindow extends JFrame implements ActionListener {
         bookingsMenu = new JMenu("Bookings");
         menuBar.add(bookingsMenu);
         
+        bookingsView = new JMenuItem("View");
         bookingsIssue = new JMenuItem("Issue");
         bookingsUpdate = new JMenuItem("Update");
         bookingsCancel = new JMenuItem("Cancel");
+        bookingsMenu.add(bookingsView);
         bookingsMenu.add(bookingsIssue);
         bookingsMenu.add(bookingsUpdate);
         bookingsMenu.add(bookingsCancel);
@@ -161,10 +165,12 @@ public class MainWindow extends JFrame implements ActionListener {
             new AddFlightWindow(this);
         } else if (ae.getSource() == flightsDel) {
         	//TODO  
+        } else if (ae.getSource() == bookingsView) {
+        	displayBookings();
         } else if (ae.getSource() == bookingsIssue) {
-        	//TODO 
+        	new AddBookingWindow(this);
         } else if (ae.getSource() == bookingsCancel) {
-        	//TODO
+        	new CancelBookingWindow(this);
         } else if (ae.getSource() == custView) {
         	displayCust();
         } else if (ae.getSource() == custAdd) {
@@ -223,6 +229,41 @@ public class MainWindow extends JFrame implements ActionListener {
         this.getContentPane().add(new JScrollPane(table));
         this.revalidate();
     }
+    
+    public void displayBookings() {
+        List<Booking> bookinglistFull = fbs.getBookings();
+        List<Booking> bookinglist = new ArrayList<>();
+        
+        for(Booking booking : bookinglistFull) {
+        	if(booking.getCancelled() == false) {
+        		bookinglist.add(booking);
+        	}
+        }
+        // headers for the table
+        String[] columns = new String[]{"Booking ID", "Created On:", "CustomerID", "CustomerName", "FlightID", "Flight No"};
+
+        Object[][] data = new Object[bookinglist.size()][6];
+        for (int i = 0; i < bookinglist.size(); i++) {
+            Booking booking = bookinglist.get(i);
+            data[i][0] = booking.getId();
+            data[i][1] = booking.getBookingDate();
+            data[i][2] = booking.getCustomerID();
+            data[i][3] = booking.getCustomer().getName();
+            data[i][4] = booking.getFlightID();
+            data[i][5] = booking.getFlight().getFlightNumber();
+        }
+
+        JTable table = new JTable(data, columns);
+        table.getColumnModel().getColumn(0).setPreferredWidth(15);
+        table.getColumnModel().getColumn(1).setPreferredWidth(30);
+        table.getColumnModel().getColumn(2).setPreferredWidth(15);
+        table.getColumnModel().getColumn(3).setPreferredWidth(100);
+        table.getColumnModel().getColumn(4).setPreferredWidth(15);
+        this.getContentPane().removeAll();
+        this.getContentPane().add(new JScrollPane(table));
+        this.revalidate();
+    }
+    
     
     
     
