@@ -4,7 +4,9 @@ import bcu.cmp5332.bookingsystem.main.FlightBookingSystemException;
 import bcu.cmp5332.bookingsystem.model.Flight;
 import bcu.cmp5332.bookingsystem.model.FlightBookingSystem;
 import java.time.LocalDate;
-
+/**
+ * Command to add a new flight to the flight booking system. 
+ */
 public class AddFlight implements Command {
 
     private final String flightNumber;
@@ -13,7 +15,15 @@ public class AddFlight implements Command {
     private final LocalDate departureDate;
     private final int capacity;
     private final double price;
-
+    /**
+     * Constructor to create an AddFlight command with specified flight details. 
+     * @param flightNumber the flight number 
+     * @param origin the origin airport of the flight 
+     * @param destination the destination airport of the flight 
+     * @param departureDate the departure date of the flight 
+     * @param capacity the passenger capacity of the flight 
+     * @param price the ticket price for the flight 
+     */
     public AddFlight(String flightNumber, String origin, String destination,
     		LocalDate departureDate, int capacity, double price) {
         this.flightNumber = flightNumber;
@@ -23,7 +33,12 @@ public class AddFlight implements Command {
         this.capacity = capacity;
         this.price = price;
     }
-    
+    /** 
+     * Executes the command to add a new flight to the flight booking system. 
+     * @param flightBookingSystem the flight booking system to add the flight to 
+     * @throws FlightBookingSystemException if an error occurs during flight addition 
+     * 
+     */
     @Override
     public void execute(FlightBookingSystem flightBookingSystem) throws FlightBookingSystemException {
         int maxId = 0;

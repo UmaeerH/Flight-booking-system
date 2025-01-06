@@ -5,14 +5,25 @@ import bcu.cmp5332.bookingsystem.model.Booking;
 import bcu.cmp5332.bookingsystem.model.Customer;
 import bcu.cmp5332.bookingsystem.model.FlightBookingSystem;
 
+/**
+ * Command to show details of a specific customer in the flight booking system. 
+ */
 public class ShowCustomer implements Command {
     private final int id;
     private int bookingAmt;
+    /**
+     * Constructor to create a ShowCustomer command with the specified customer ID. 
+     * @param id the ID of the customer to be shown 
+     */
     public ShowCustomer(int id) {
         this.id = id;
         bookingAmt = 0;
     }
-
+    /** 
+     * Executes the command to show detailed information about a customer in the flight booking system. 
+     * @param flightBookingSystem the flight booking system containing the customer 
+     * @throws FlightBookingSystemException if an error occurs while retrieving customer details 
+     */
     @Override
     public void execute(FlightBookingSystem flightBookingSystem) throws FlightBookingSystemException {
         Customer customer = flightBookingSystem.getCustomerByID(id);
