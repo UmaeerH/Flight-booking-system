@@ -13,12 +13,14 @@ public class Customer {
     private String phone;
     private String email;
     private List<Booking> bookings = new ArrayList<>();
+    private boolean deleted;
     
-    public Customer(int id, String name, String phone, String email) {
+    public Customer(int id, String name, String phone, String email, boolean deleted) {
         this.id = id;
         this.name = name;
         this.phone = phone;
         this.email = email;
+        this.deleted = deleted;
         
         bookings = new ArrayList<>();
     }
@@ -81,6 +83,14 @@ public class Customer {
             }
         }
         bookings.add(booking);
+    }
+    
+    public boolean getDeleted() {
+    	return deleted;
+    }
+    
+    public void setDeleted(boolean newDeleted) {
+    	this.deleted = newDeleted;
     }
 
 

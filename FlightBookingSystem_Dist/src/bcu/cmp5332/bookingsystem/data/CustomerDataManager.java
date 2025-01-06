@@ -26,7 +26,8 @@ public class CustomerDataManager implements DataManager {
                     String customerName = properties[1];
                     String customerPhone = properties[2];
                     String customerMail = properties[3];
-                    Customer customer = new Customer(id, customerName, customerPhone, customerMail);
+                    boolean deleted = Boolean.parseBoolean(properties[4]);
+                    Customer customer = new Customer(id, customerName, customerPhone, customerMail, deleted);
                     fbs.addCustomer(customer);
                 } catch (NumberFormatException ex) {
                     throw new FlightBookingSystemException("Unable to parse book id " + properties[0] + " on line " + line_idx
@@ -45,6 +46,7 @@ public class CustomerDataManager implements DataManager {
                 out.print(customer.getName() + SEPARATOR);
                 out.print(customer.getPhone() + SEPARATOR);
                 out.print(customer.getEmail() + SEPARATOR);
+                out.print(customer.getDeleted() + SEPARATOR);
                 out.println();
             }
         }

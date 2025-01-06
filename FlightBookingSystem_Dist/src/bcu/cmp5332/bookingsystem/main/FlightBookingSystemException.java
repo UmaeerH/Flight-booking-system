@@ -7,7 +7,12 @@ package bcu.cmp5332.bookingsystem.main;
  */
 public class FlightBookingSystemException extends Exception {
 
-    public FlightBookingSystemException(String message) {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -2737613743849322412L;
+
+	public FlightBookingSystemException(String message) {
         super(message);
     }
 }
