@@ -17,7 +17,7 @@ public class CustomerTests {
 	@Before
     public void setUp() {
         testFlight = new Flight(50, "AA123", "London", "New York", LocalDate.now(), 100, 500.0);
-        testCustomer = new Customer(999, "Choi Yu-Jin", "42894829", "Choi@gmail.com");
+        testCustomer = new Customer(999, "Choi Yu-Jin", "42894829", "Choi@gmail.com", false);
         testBooking = new Booking(1, testCustomer, testFlight, 500.0, LocalDate.now(), false);
     }
 	

@@ -1,12 +1,10 @@
 package bcu.cmp5332.bookingsystem.test;
 
 import bcu.cmp5332.bookingsystem.model.*;
-import bcu.cmp5332.bookingsystem.model.Booking;
 import bcu.cmp5332.bookingsystem.main.FlightBookingSystemException;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.time.LocalDate;
@@ -17,12 +15,10 @@ import java.util.List;
 public class FlightTests {
 	private Flight testFlight;
 	private Customer testCustomer;
-	private Booking testBooking;
 	@Before
     public void setUp() {
         testFlight = new Flight(50, "AA123", "London", "New York", LocalDate.now(), 100, 500.0);
-        testCustomer = new Customer(999, "Choi Yu-Jin", "42894829", "Choi@gmail.com");
-        testBooking = new Booking(1, testCustomer, testFlight, 500.0, LocalDate.now(), false);
+        testCustomer = new Customer(999, "Choi Yu-Jin", "42894829", "Choi@gmail.com", false);
     }
 
     @Test
