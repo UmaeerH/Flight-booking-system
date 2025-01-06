@@ -98,6 +98,19 @@ public class FlightBookingSystem {
         bookings.put(booking.getId(), booking);
     }
     
+    // REMOVE/DELETE Methods
+    
+    public void removeCustomer(int customerID) throws FlightBookingSystemException {
+    	if (!customers.containsKey(customerID)) {
+    		throw new IllegalArgumentException("Customer ID is not found in the system");
+    	}
+    	Customer customer = customers.get(customerID);
+    	if (customer.getDeleted() == true) {
+    		throw new FlightBookingSystemException("Customer is already removed");
+    	}
+    	customer.setDeleted(true);
+    }
+    
     public String displayCustomer(Customer customer) {
     	StringBuilder returnString = new StringBuilder();
     	returnString.append(customer.getDetailsLong());

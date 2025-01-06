@@ -21,7 +21,9 @@ public class ListCustomers implements Command {
     public void execute(FlightBookingSystem flightBookingSystem) throws FlightBookingSystemException {
         List<Customer> customers = flightBookingSystem.getCustomers();
         for (Customer customer : customers) {
-            System.out.println(customer.getDetailsShort());
+        	if(customer.getDeleted()==false) {
+        		System.out.println(customer.getDetailsShort());
+        	}
         }
         System.out.println(customers.size() + " customer(s)");
     }

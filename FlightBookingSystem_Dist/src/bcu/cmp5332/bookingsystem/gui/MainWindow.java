@@ -141,10 +141,10 @@ public class MainWindow extends JFrame implements ActionListener {
 
 /* Uncomment the following code to run the GUI version directly from the IDE */
     //FIXME - comment lines below to convert back to CLI
-    public static void main(String[] args) throws IOException, FlightBookingSystemException {
-        FlightBookingSystem fbs = FlightBookingSystemData.load();
-         new MainWindow(fbs);			
-    }
+    //public static void main(String[] args) throws IOException, FlightBookingSystemException {
+    //    FlightBookingSystem fbs = FlightBookingSystemData.load();
+    //     new MainWindow(fbs);			
+    //}
 
 
     @Override
