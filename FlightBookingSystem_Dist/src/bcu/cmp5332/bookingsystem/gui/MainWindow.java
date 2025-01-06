@@ -1,8 +1,8 @@
 package bcu.cmp5332.bookingsystem.gui;
 
 import bcu.cmp5332.bookingsystem.data.FlightBookingSystemData;
-import bcu.cmp5332.bookingsystem.model.Flight;
-import bcu.cmp5332.bookingsystem.model.FlightBookingSystem;
+import bcu.cmp5332.bookingsystem.main.FlightBookingSystemException;
+import bcu.cmp5332.bookingsystem.model.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -95,6 +95,7 @@ public class MainWindow extends JFrame implements ActionListener {
         
         // adding Bookings menu and menu items
         bookingsMenu = new JMenu("Bookings");
+        menuBar.add(bookingsMenu);
         
         bookingsIssue = new JMenuItem("Issue");
         bookingsUpdate = new JMenuItem("Update");
@@ -124,6 +125,7 @@ public class MainWindow extends JFrame implements ActionListener {
         custDel.addActionListener(this);
 
         setSize(800, 500);
+        setResizable(false);
 
         setVisible(true);
         setAutoRequestFocus(true);
@@ -135,10 +137,11 @@ public class MainWindow extends JFrame implements ActionListener {
     }	
 
 /* Uncomment the following code to run the GUI version directly from the IDE */
-//    public static void main(String[] args) throws IOException, FlightBookingSystemException {
-//        FlightBookingSystem fbs = FlightBookingSystemData.load();
-//        new MainWindow(fbs);			
-//    }
+    //FIXME - comment lines below to convert back to CLI
+    public static void main(String[] args) throws IOException, FlightBookingSystemException {
+        FlightBookingSystem fbs = FlightBookingSystemData.load();
+         new MainWindow(fbs);			
+    }
 
 
 
@@ -153,28 +156,21 @@ public class MainWindow extends JFrame implements ActionListener {
             }
             System.exit(0);
         } else if (ae.getSource() == flightsView) {
-            displayFlights();
-            
+            displayFlights(); 
         } else if (ae.getSource() == flightsAdd) {
             new AddFlightWindow(this);
-            
         } else if (ae.getSource() == flightsDel) {
-            
-            
+        	//TODO  
         } else if (ae.getSource() == bookingsIssue) {
-            
-            
+        	//TODO 
         } else if (ae.getSource() == bookingsCancel) {
-            
-            
+        	//TODO
         } else if (ae.getSource() == custView) {
-            
-            
+        	displayCust();
         } else if (ae.getSource() == custAdd) {
-            
-            
+        	 new AddCustomerWindow(this);
         } else if (ae.getSource() == custDel) {
-            
+            //TODO
             
         }
     }
@@ -182,20 +178,57 @@ public class MainWindow extends JFrame implements ActionListener {
     public void displayFlights() {
         List<Flight> flightsList = fbs.getFlights();
         // headers for the table
-        String[] columns = new String[]{"Flight No", "Origin", "Destination", "Departure Date"};
+        String[] columns = new String[]{"ID", "Flight No", "Origin", "Destination", 
+        		"Departure Date", "Remaining Seats"};
 
         Object[][] data = new Object[flightsList.size()][6];
         for (int i = 0; i < flightsList.size(); i++) {
             Flight flight = flightsList.get(i);
-            data[i][0] = flight.getFlightNumber();
-            data[i][1] = flight.getOrigin();
-            data[i][2] = flight.getDestination();
-            data[i][3] = flight.getDepartureDate();
+            data[i][0] = flight.getId();
+            data[i][1] = flight.getFlightNumber();
+            data[i][2] = flight.getOrigin();
+            data[i][3] = flight.getDestination();
+            data[i][4] = flight.getDepartureDate();
+            data[i][5] = flight.getFreeCapacity();
         }
 
         JTable table = new JTable(data, columns);
+        table.getColumnModel().getColumn(0).setPreferredWidth(20);
+        table.getColumnModel().getColumn(5).setPreferredWidth(20); 	//ID and free seats are now smaller
         this.getContentPane().removeAll();
         this.getContentPane().add(new JScrollPane(table));
         this.revalidate();
-    }	
+    }
+    
+    
+    
+    public void displayCust() {
+        List<Customer> customerlist = fbs.getCustomers();
+        // headers for the table
+        String[] columns = new String[]{"ID", "Name", "Phone", "Email", "Booking No."};
+
+        Object[][] data = new Object[customerlist.size()][5];
+        for (int i = 0; i < customerlist.size(); i++) {
+            Customer customer = customerlist.get(i);
+            data[i][0] = customer.getId();
+            data[i][1] = customer.getName();
+            data[i][2] = customer.getPhone();
+            data[i][3] = customer.getEmail();
+            data[i][4] = customer.getBookings().size();
+        }
+
+        JTable table = new JTable(data, columns);
+        table.getColumnModel().getColumn(0).setPreferredWidth(20);
+        table.getColumnModel().getColumn(4).setPreferredWidth(20); 	//ID and free seats are now smaller
+        this.getContentPane().removeAll();
+        this.getContentPane().add(new JScrollPane(table));
+        this.revalidate();
+    }
+    
+    
+    
+    
+    
 }
+
+

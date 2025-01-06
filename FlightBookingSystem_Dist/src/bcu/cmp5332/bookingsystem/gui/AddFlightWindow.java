@@ -38,8 +38,9 @@ public class AddFlightWindow extends JFrame implements ActionListener {
     }
 
     /**
-     * Initialize the contents of the frame.
+     * Initialise the contents of the frame.
      */
+    
     private void initialize() {
 
         try {
@@ -52,7 +53,7 @@ public class AddFlightWindow extends JFrame implements ActionListener {
 
         setSize(350, 220);
         JPanel topPanel = new JPanel();
-        topPanel.setLayout(new GridLayout(5, 2));
+        topPanel.setLayout(new GridLayout(6, 2));
         topPanel.add(new JLabel("Flight No: "));
         topPanel.add(flightNoText);
         topPanel.add(new JLabel("Origin: "));
