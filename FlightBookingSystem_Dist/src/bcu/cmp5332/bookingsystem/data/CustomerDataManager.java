@@ -9,11 +9,21 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Scanner;
-
+/**
+ * Manages the loading and storing of customer data in the flight booking system.
+ * @author UmaeerH
+ * @author AnisaU
+ * @version main 
+ */
 public class CustomerDataManager implements DataManager {
 
     private final String RESOURCE = "./resources/data/customers.txt";
-    
+    /**
+     * Loads customer data from a file into the flight booking system. 
+     * @param fbs the flight booking system to load customer data into 
+     * @throws IOException if an I/O error occurs while reading the file 
+     * @throws FlightBookingSystemException if an error occurs while parsing customer data 
+     */
     @Override
     public void loadData(FlightBookingSystem fbs) throws IOException, FlightBookingSystemException {
     	try (Scanner sc = new Scanner(new File(RESOURCE))) {
@@ -37,6 +47,12 @@ public class CustomerDataManager implements DataManager {
             }
         }
     }
+    
+    /**
+     * Stores customer data from the flight booking system into a file. 
+     * @param fbs the flight booking system containing customer data 
+     * @throws IOException if an I/O error occurs while writing to the file 
+     */
 
     @Override
     public void storeData(FlightBookingSystem fbs) throws IOException {

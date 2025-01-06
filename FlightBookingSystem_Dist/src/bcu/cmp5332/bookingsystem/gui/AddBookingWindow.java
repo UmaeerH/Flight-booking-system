@@ -16,7 +16,12 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
-
+/**
+ * GUI window for adding a new booking to the flight booking system. 
+ * @author UmaeerH
+ * @author AnisaU
+ * @version main
+ */
 public class AddBookingWindow extends JFrame implements ActionListener {
 	
     private static final long serialVersionUID = -252432525878027291L;
@@ -26,7 +31,10 @@ public class AddBookingWindow extends JFrame implements ActionListener {
 
     private JButton addBtn = new JButton("Add");
     private JButton cancelBtn = new JButton("Cancel");
-
+    /**
+     * Constructs an AddBookingWindow with a reference to the main window. 
+     * @param mw the main window 
+     */
     public AddBookingWindow(MainWindow mw) {
         this.mw = mw;
         initialize();
@@ -71,6 +79,10 @@ public class AddBookingWindow extends JFrame implements ActionListener {
         setVisible(true);
 
     }
+    /**
+     * Handles action events for the buttons. 
+     * @param ae the action event 
+     */
 
     @Override
     public void actionPerformed(ActionEvent ae) {
@@ -81,7 +93,9 @@ public class AddBookingWindow extends JFrame implements ActionListener {
         }
 
     }
-
+    /**
+     * Adds a new booking based on the input data and executes the AddBooking command.
+     */
     private void addBook() {
         try {
             String str_custID = customerIDText.getText();

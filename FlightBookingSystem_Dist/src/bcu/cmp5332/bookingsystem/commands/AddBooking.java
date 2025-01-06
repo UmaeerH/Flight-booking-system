@@ -3,6 +3,9 @@
 	import java.time.LocalDate;
 	/**
 	 * Command to add a new booking to the flight booking system.
+	 * @author AnisaU
+	 * @author UmaeerH
+	 * @version main
 	 */
 	
 	import bcu.cmp5332.bookingsystem.main.FlightBookingSystemException;

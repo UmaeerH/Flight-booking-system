@@ -7,6 +7,9 @@ import bcu.cmp5332.bookingsystem.model.FlightBookingSystem;
 import java.util.List;
 /**
  * Command to list all customers in the flight booking system. 
+ * @author UmaeerH
+ * @author AnisaU
+ * @version main
  */
 public class ListCustomers implements Command {
 	/**

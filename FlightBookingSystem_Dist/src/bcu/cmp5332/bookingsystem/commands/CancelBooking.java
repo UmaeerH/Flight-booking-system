@@ -5,6 +5,9 @@ import bcu.cmp5332.bookingsystem.model.*;
 
 /**
  * Command to cancel an existing booking in the flight booking system. 
+ * @author UmaeerH
+ * @author AnisaU
+ * @version main
  */
 public class CancelBooking implements Command {
     private final int id;

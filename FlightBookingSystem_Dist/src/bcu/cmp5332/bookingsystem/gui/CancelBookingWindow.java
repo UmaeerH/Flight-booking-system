@@ -16,7 +16,12 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
-
+/**
+ * The CancelBookingWindow class provides a graphical user interface for users to cancel an existing booking.
+ * @author UmaeerH
+ * @author AnisaU
+ * @version main 
+ */
 public class CancelBookingWindow extends JFrame implements ActionListener {
 	
     private static final long serialVersionUID = -5535878027291L;
@@ -25,7 +30,10 @@ public class CancelBookingWindow extends JFrame implements ActionListener {
 
     private JButton delBtn = new JButton("Confirm Cancellation");
     private JButton cancelBtn = new JButton("Back");
-
+    /**
+     * Constructs a new CancelBookingWindow. 
+     * @param mw The MainWindow instance from which this window is invoked.
+     */
     public CancelBookingWindow(MainWindow mw) {
         this.mw = mw;
         initialize();
@@ -68,7 +76,10 @@ public class CancelBookingWindow extends JFrame implements ActionListener {
         setVisible(true);
 
     }
-
+    /**
+     * Handles button click events. 
+     * @param ae The action event triggered by the button click. 
+     */
     @Override
     public void actionPerformed(ActionEvent ae) {
         if (ae.getSource() == delBtn) {
@@ -78,7 +89,9 @@ public class CancelBookingWindow extends JFrame implements ActionListener {
         }
 
     }
-
+    /**
+     * Cancels a booking using the provided booking ID. 
+     */
     private void addBook() {
         try {
             String str_bookID = bookingIDText.getText();

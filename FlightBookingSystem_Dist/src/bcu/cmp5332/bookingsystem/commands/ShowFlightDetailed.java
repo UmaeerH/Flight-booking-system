@@ -5,6 +5,9 @@ import bcu.cmp5332.bookingsystem.model.Flight;
 import bcu.cmp5332.bookingsystem.model.FlightBookingSystem;
 /**
  * Command to show detailed information about a specific flight in the flight booking system. 
+ * @author UmaeerH
+ * @author AnisaU
+ * @version main
  */
 public class ShowFlightDetailed implements Command {
     private final int id;

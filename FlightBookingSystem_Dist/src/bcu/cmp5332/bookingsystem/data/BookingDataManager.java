@@ -1,6 +1,7 @@
 package bcu.cmp5332.bookingsystem.data;
 
 import bcu.cmp5332.bookingsystem.main.FlightBookingSystemException;
+
 import bcu.cmp5332.bookingsystem.model.*;
 
 import java.io.File;
@@ -10,10 +11,22 @@ import java.io.PrintWriter;
 import java.time.LocalDate;
 import java.util.Scanner;
 
+/** 
+ * Manages the loading and storing of booking data in the flight booking system.
+ * @author UmaeerH
+ * @author AnisaU
+ * @version main
+ */
+
 public class BookingDataManager implements DataManager {
     
     public final String RESOURCE = "./resources/data/bookings.txt";
-
+    /** 
+     * Loads booking data from a file into the flight booking system. 
+     * @param fbs the flight booking system to load booking data into 
+     * @throws IOException if an I/O error occurs while reading the file 
+     * @throws FlightBookingSystemException if an error occurs while parsing booking data 
+     */
     @Override
     public void loadData(FlightBookingSystem fbs) throws IOException, FlightBookingSystemException {
     	try (Scanner sc = new Scanner(new File(RESOURCE))) {
@@ -49,7 +62,11 @@ public class BookingDataManager implements DataManager {
     	
     	
     }
-
+    /**
+     * Stores booking data from the flight booking system into a file. 
+     * @param fbs the flight booking system containing booking data 
+     * @throws IOException if an I/O error occurs while writing to the file 
+     */
     @Override
     public void storeData(FlightBookingSystem fbs) throws IOException {
     	try (PrintWriter out = new PrintWriter(new FileWriter(RESOURCE))) {

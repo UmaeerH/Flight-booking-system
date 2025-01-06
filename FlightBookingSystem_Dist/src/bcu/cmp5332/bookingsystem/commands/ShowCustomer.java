@@ -7,6 +7,9 @@ import bcu.cmp5332.bookingsystem.model.FlightBookingSystem;
 
 /**
  * Command to show details of a specific customer in the flight booking system. 
+ * @author UmaeerH
+ * @author AnisaU
+ * @version main
  */
 public class ShowCustomer implements Command {
     private final int id;

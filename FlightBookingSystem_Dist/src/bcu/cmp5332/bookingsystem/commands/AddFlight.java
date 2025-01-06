@@ -5,7 +5,10 @@ import bcu.cmp5332.bookingsystem.model.Flight;
 import bcu.cmp5332.bookingsystem.model.FlightBookingSystem;
 import java.time.LocalDate;
 /**
- * Command to add a new flight to the flight booking system. 
+ * Command to add a new flight to the flight booking system.
+ * @author UmaeerH
+ * @author AnisaU
+ * @version main
  */
 public class AddFlight implements Command {
 
