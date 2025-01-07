@@ -7,8 +7,8 @@ import bcu.cmp5332.bookingsystem.model.FlightBookingSystem;
 
 /**
  * Command to remove a existing customer from the flight booking system.
- * @author AnisaU
  * @author UmaeerH
+ * @author AnisaU03
  * @version main
  */
 public class RemoveCustomer implements Command {
@@ -17,10 +17,8 @@ public class RemoveCustomer implements Command {
     private int customerID;
     
 	/**
-     * Constructor to create an AddCustomer command with specified name, phone, and email. 
-     * @param name the name of the customer 
-     * @param phone the phone number of the customer 
-     * @param email the email address of the customer 
+     * Constructor to create an RemoveCustomer command with specified ID. 
+     * @param customerID id of the customer
      */
     
     public RemoveCustomer(int customerid) {

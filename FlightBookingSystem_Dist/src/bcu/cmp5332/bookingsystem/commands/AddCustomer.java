@@ -5,8 +5,8 @@ import bcu.cmp5332.bookingsystem.model.Customer;
 import bcu.cmp5332.bookingsystem.model.FlightBookingSystem;
 /**
  * Command to add a new customer to the flight booking system.
- * @author AnisaU
  * @author UmaeerH
+ * @author AnisaU03
  * @version main
  */
 public class AddCustomer implements Command {

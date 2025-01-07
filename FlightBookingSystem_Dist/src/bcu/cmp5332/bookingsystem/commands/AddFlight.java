@@ -7,7 +7,7 @@ import java.time.LocalDate;
 /**
  * Command to add a new flight to the flight booking system.
  * @author UmaeerH
- * @author AnisaU
+ * @author AnisaU03
  * @version main
  */
 public class AddFlight implements Command {
@@ -50,7 +50,7 @@ public class AddFlight implements Command {
             maxId = flightBookingSystem.getFlights().get(lastIndex).getId();
         }
         
-        Flight flight = new Flight(++maxId, flightNumber, origin, destination, departureDate, capacity, price);
+        Flight flight = new Flight(++maxId, flightNumber, origin, destination, departureDate, capacity, price, false);
         flightBookingSystem.addFlight(flight);
         System.out.println("Flight #" + flight.getId() + " added.");
     }

@@ -11,9 +11,13 @@ public class ListFlights implements Command {
     @Override
     public void execute(FlightBookingSystem flightBookingSystem) throws FlightBookingSystemException {
         List<Flight> flights = flightBookingSystem.getFlights();
+        int numberOf = 0;
         for (Flight flight : flights) {
-            System.out.println(flight.getDetailsShort());
+        	if (flight.getDeleted()==false){
+        		System.out.println(flight.getDetailsShort());
+        		numberOf++;
+        	}
         }
-        System.out.println(flights.size() + " flight(s)");
+        System.out.println(numberOf + " flight(s)");
     }
 }

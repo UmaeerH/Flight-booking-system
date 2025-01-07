@@ -13,8 +13,10 @@ public interface Command {
         + "\tshowflight(detailed) [flight id]          show flight details\n"
         + "\tshowcustomer [customer id]                show customer details\n"
         + "\taddbooking [customer id] [flight id]      add a new booking\n"
-        + "\tcancelbooking [booking id]                cancel a booking\n"
         + "\teditbooking [booking id] [flight id]      update a booking\n"
+        + "\tremovecustomer [customer id]              remove a customer\n"
+        + "\tremoveflight [flight id]                  remove a flight\n"
+        + "\tcancelbooking [booking id]                cancel a booking\n"
         + "\tloadgui                                   loads the GUI version of the app\n"
         + "\thelp                                      prints this help message\n"
         + "\texit                                      exits the program";

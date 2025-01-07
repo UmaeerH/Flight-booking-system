@@ -19,7 +19,7 @@ import javax.swing.UIManager;
 /**
  * GUI window for adding a new booking to the flight booking system. 
  * @author UmaeerH
- * @author AnisaU
+ * @author AnisaU03
  * @version main
  */
 public class AddBookingWindow extends JFrame implements ActionListener {

@@ -18,11 +18,13 @@ public class Flight {
     private LocalDate departureDate;
     private int capacity;
     private double price;
+    private boolean deleted;
 
     private final Set<Customer> passengers;
 
     public Flight(int id, String flightNumber, String origin, 
-    			String destination, LocalDate departureDate, int capacity, double price) {
+    			String destination, LocalDate departureDate, int capacity, double price,
+    			boolean deleted) {
         this.id = id;
         this.flightNumber = flightNumber;
         this.origin = origin;
@@ -30,6 +32,7 @@ public class Flight {
         this.departureDate = departureDate;
         this.capacity = capacity;
         this.price = price;
+        this.deleted = deleted;
         
         passengers = new HashSet<>();
 
@@ -132,5 +135,14 @@ public class Flight {
     		throw new FlightBookingSystemException("Customer not found in this flight.");
     	} 
     	passengers.remove(customer); 
+    }
+    
+    public boolean getDeleted() {
+    	return deleted;
+    }
+    
+    public void setDeleted(boolean newDeleted) {
+    	this.deleted = newDeleted;
+    
     }
 }

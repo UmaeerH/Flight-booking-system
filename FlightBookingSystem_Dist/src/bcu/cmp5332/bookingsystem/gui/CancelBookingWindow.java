@@ -19,7 +19,7 @@ import javax.swing.UIManager;
 /**
  * The CancelBookingWindow class provides a graphical user interface for users to cancel an existing booking.
  * @author UmaeerH
- * @author AnisaU
+ * @author AnisaU03
  * @version main 
  */
 public class CancelBookingWindow extends JFrame implements ActionListener {

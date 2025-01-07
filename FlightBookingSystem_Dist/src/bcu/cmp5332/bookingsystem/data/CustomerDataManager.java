@@ -12,7 +12,7 @@ import java.util.Scanner;
 /**
  * Manages the loading and storing of customer data in the flight booking system.
  * @author UmaeerH
- * @author AnisaU
+ * @author AnisaU03
  * @version main 
  */
 public class CustomerDataManager implements DataManager {

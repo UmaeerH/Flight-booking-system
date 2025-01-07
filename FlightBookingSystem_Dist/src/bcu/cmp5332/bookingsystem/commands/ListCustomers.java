@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * Command to list all customers in the flight booking system. 
  * @author UmaeerH
- * @author AnisaU
+ * @author AnisaU03
  * @version main
  */
 public class ListCustomers implements Command {
@@ -20,11 +20,13 @@ public class ListCustomers implements Command {
     @Override
     public void execute(FlightBookingSystem flightBookingSystem) throws FlightBookingSystemException {
         List<Customer> customers = flightBookingSystem.getCustomers();
+        int numberOf = 0;
         for (Customer customer : customers) {
         	if(customer.getDeleted()==false) {
         		System.out.println(customer.getDetailsShort());
+        		numberOf++;
         	}
         }
-        System.out.println(customers.size() + " customer(s)");
+        System.out.println(numberOf + " customer(s)");
     }
 }

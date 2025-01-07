@@ -111,6 +111,17 @@ public class FlightBookingSystem {
     	customer.setDeleted(true);
     }
     
+    public void removeFlight(int flightID) throws FlightBookingSystemException {
+    	if (!flights.containsKey(flightID)) {
+    		throw new IllegalArgumentException("Flight ID is not found in the system");
+    	}
+    	Flight flight = flights.get(flightID);
+    	if (flight.getDeleted() == true) {
+    		throw new FlightBookingSystemException("Flight is already removed");
+    	}
+    	flight.setDeleted(true);
+    }
+    
     public String displayCustomer(Customer customer) {
     	StringBuilder returnString = new StringBuilder();
     	returnString.append(customer.getDetailsLong());

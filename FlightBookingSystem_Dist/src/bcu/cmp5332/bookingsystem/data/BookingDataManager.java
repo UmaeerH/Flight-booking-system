@@ -14,7 +14,7 @@ import java.util.Scanner;
 /** 
  * Manages the loading and storing of booking data in the flight booking system.
  * @author UmaeerH
- * @author AnisaU
+ * @author AnisaU03
  * @version main
  */
 
