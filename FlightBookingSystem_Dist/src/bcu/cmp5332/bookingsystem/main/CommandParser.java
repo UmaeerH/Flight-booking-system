@@ -77,15 +77,14 @@ public class CommandParser {
                 	return new CancelBooking(id);
                 	}
             } else if (parts.length == 3) {		// Command [customer ID] [Flight ID]
-                int customerID = Integer.parseInt(parts[1]);
-                int flightID = Integer.parseInt(parts[2]);
-                
                 if (cmd.equalsIgnoreCase("addbooking")) {
+                	int customerID = Integer.parseInt(parts[1]);
+                    int flightID = Integer.parseInt(parts[2]);
                     return new AddBooking(customerID, flightID);
-
-                	
-                } else if (cmd.equalsIgnoreCase("editbooking")) {
-                    //TODO
+                } else if (cmd.equalsIgnoreCase("editbooking")) { // Command [Booking ID] [FlightID]
+                    int BookingID = Integer.parseInt(parts[1]);
+                    int flightID = Integer.parseInt(parts[2]);
+                    return new UpdateBooking(BookingID, flightID);
                 }
             }
         } catch (NumberFormatException ex) {

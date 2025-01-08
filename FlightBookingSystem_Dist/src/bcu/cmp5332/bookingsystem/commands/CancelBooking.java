@@ -24,12 +24,16 @@ public class CancelBooking implements Command {
      * @throws FlightBookingSystemException if an error occurs during booking cancellation 
      */
     
-    
+    // Cancellation fee = £10 + 10% of ticket cost
 	@Override
 	public void execute(FlightBookingSystem flightBookingSystem) throws FlightBookingSystemException {
 		Booking booking = flightBookingSystem.getBookingByID(id);
 		booking.setCancelled(true);
 		booking.getFlight().removePassenger(booking.getCustomer());
+		double canCost = (double) booking.getCost() / 10 ;
+		canCost += 10;
+		canCost = Math.round(canCost * 100.0) / 100.0;
+		booking.setCanCost(canCost);
 		System.out.println("Booking #" + booking.getId() + " has been cancelled");
 	}
 }

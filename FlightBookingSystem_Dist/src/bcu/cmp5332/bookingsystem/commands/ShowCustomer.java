@@ -59,9 +59,10 @@ public class ShowCustomer implements Command {
         			System.out.println(
 							"========CANCELLED========\n" +
 							"Booking ID: " + booking.getId() + // I hate printing large bits
-							", Flight Date: CANCELLED" + ", Cost: £" + booking.getCost() + "(cancellation charge)"
+							", Flight Date: CANCELLED" + ", Cancellation Fee: £" + booking.getCanCost() 
 							+ "\n" + "Flight: " + booking.getFlight().getFlightNumber() + " : " +
-        							booking.getFlight().getOrigin() + " to " + booking.getFlight().getDestination());
+        							booking.getFlight().getOrigin() + " to " + booking.getFlight().getDestination()
+        							+"\nFlight Cost: £" + booking.getCost());
         		}
         	}
         	System.out.println("================\n" + bookingAmt + " active booking(s)");

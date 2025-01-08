@@ -21,6 +21,7 @@
 	    private double cost;
 	    private LocalDate bookingDate;
 	    private boolean cancelled;
+	    private double canCost;
 	    
 	    /** 
 	     * Constructor to create an AddBooking command with specified customer ID and flight ID. *
@@ -37,6 +38,7 @@
 	        this.cost = 0.0;
 	        this.bookingDate = LocalDate.now();
 	        this.cancelled = false;
+	        this.canCost = 0;
 	    }
 	    
 	    /** 
@@ -50,7 +52,7 @@
 	    	// Retrieve Customer and Flight by their IDs
 	        this.customer = flightBookingSystem.getCustomerByID(customerID);
 	        this.flight = flightBookingSystem.getFlightByID(flightID);
-	        this.cost = flight.getPrice();
+	        this.cost = flight.getBookingPrice();
 	        
 	        if (this.flight.getFreeCapacity() == 0) {
 	        	throw new FlightBookingSystemException("Flight is full");
@@ -67,7 +69,7 @@
 	        }
 	        
 	        
-	        Booking booking = new Booking(++maxId, customer, flight, cost, bookingDate, cancelled);
+	        Booking booking = new Booking(++maxId, customer, flight, cost, bookingDate, cancelled, canCost);
 	        try {
 	        	flightBookingSystem.getCustomerByID(customerID).addBooking(booking);
 	        	flightBookingSystem.getFlightByID(flightID).addPassenger(customer);

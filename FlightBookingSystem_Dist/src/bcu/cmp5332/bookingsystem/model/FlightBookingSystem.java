@@ -148,7 +148,7 @@ public class FlightBookingSystem {
 	                	  .append(", Flight Date: ").append(booking.getFlight().getDepartureDate())
 	                	  .append("\nCost: £").append(booking.getCost())
 	                	  .append(", Flight: ").append(booking.getFlight().getFlightNumber())
-	                	  .append(" : ").append(booking.getFlight().getOrigin())
+	                	  .append(" | ").append(booking.getFlight().getOrigin())
 	                	  .append(" to ").append(booking.getFlight().getDestination()).append("\n");
 					}
 				} else {
@@ -156,9 +156,10 @@ public class FlightBookingSystem {
 	                  .append("Booking ID: ").append(booking.getId())
 	                  .append(", Booking Date: ").append(booking.getBookingDate())
 	                  .append(", Flight Date: CANCELLED")
-	                  .append("\nCost: £").append(booking.getCost()).append(" (cancellation charge)")
+	                  .append("\nCancellation Cost: £").append(booking.getCanCost())
+	                  .append("\nCost: £").append(booking.getCost())
 	                  .append(", Flight: ").append(booking.getFlight().getFlightNumber())
-	                  .append(" : ").append(booking.getFlight().getOrigin())
+	                  .append(" | ").append(booking.getFlight().getOrigin())
 	                  .append(" to ").append(booking.getFlight().getDestination()).append("\n");
 	            }
         	}

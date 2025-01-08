@@ -41,11 +41,12 @@ public class BookingDataManager implements DataManager {
                     LocalDate bookingDate = LocalDate.parse(properties[3]);
                     double cost = Double.parseDouble(properties[4]);
                     boolean cancelled = Boolean.parseBoolean(properties[5]);
+                    double canCost = Double.parseDouble(properties[6]);
                     // Search for customer and flight with their IDs
                     Customer customer = fbs.getCustomerByID(custID);
                     Flight flight = fbs.getFlightByID(flightID);
                     
-                    Booking booking = new Booking(id, customer, flight, cost, bookingDate, cancelled);                   
+                    Booking booking = new Booking(id, customer, flight, cost, bookingDate, cancelled, canCost);                   
                     customer.addBooking(booking);
                     fbs.addBooking(booking);
                     if(cancelled==false) {
@@ -77,6 +78,7 @@ public class BookingDataManager implements DataManager {
                 out.print(booking.getBookingDate() + SEPARATOR);
                 out.print(booking.getCost() + SEPARATOR);
                 out.print(booking.getCancelled() + SEPARATOR);
+                out.print(booking.getCanCost() + SEPARATOR);
                 out.println();
             }
         }
