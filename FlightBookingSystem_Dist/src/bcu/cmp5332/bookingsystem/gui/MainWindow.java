@@ -179,14 +179,22 @@ public class MainWindow extends JFrame implements ActionListener {
     }
 
     public void displayFlights() {
-        List<Flight> flightsList = fbs.getFlights();
+    	List<Flight> flightlistFull = fbs.getFlights();
+        List<Flight> flightlist = new ArrayList<>();
+        // Creates a list of non-deleted flights
+        for(Flight flight : flightlistFull) {
+        	if(flight.getDeleted() == false) {
+        		flightlist.add(flight);
+        	}
+        }
+        
         // headers for the table
         String[] columns = new String[]{"ID", "Flight No", "Origin", "Destination", 
         		"Departure Date", "Remaining Seats"};
 
-        Object[][] data = new Object[flightsList.size()][6];
-        for (int i = 0; i < flightsList.size(); i++) {
-            Flight flight = flightsList.get(i);
+        Object[][] data = new Object[flightlist.size()][6];
+        for (int i = 0; i < flightlist.size(); i++) {
+            Flight flight = flightlist.get(i);
             data[i][0] = flight.getId();
             data[i][1] = flight.getFlightNumber();
             data[i][2] = flight.getOrigin();
@@ -206,7 +214,15 @@ public class MainWindow extends JFrame implements ActionListener {
     
     
     public void displayCust() {
-        List<Customer> customerlist = fbs.getCustomers();
+        List<Customer> customerlistFull = fbs.getCustomers();
+        List<Customer> customerlist = new ArrayList<>();
+        // Creates a list of non-deleted customers
+        for(Customer customer : customerlistFull) {
+        	if(customer.getDeleted() == false) {
+        		customerlist.add(customer);
+        	}
+        }
+        
         // headers for the table
         String[] columns = new String[]{"ID", "Name", "Phone", "Email", "Booking No."};
 

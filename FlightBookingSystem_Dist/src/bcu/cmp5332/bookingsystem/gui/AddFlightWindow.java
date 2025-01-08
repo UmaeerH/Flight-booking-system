@@ -118,6 +118,7 @@ public class AddFlightWindow extends JFrame implements ActionListener {
             }
             try {
                 price = Double.parseDouble(priceText.getText());
+                price = Math.round(price * 100.0) / 100.0; // Rounds to 2 d.p.
             }
             catch (IllegalArgumentException e) {
                 throw new FlightBookingSystemException("Price must be a valid number");

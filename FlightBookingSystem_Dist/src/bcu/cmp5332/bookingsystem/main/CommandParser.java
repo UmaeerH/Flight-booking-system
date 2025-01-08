@@ -32,6 +32,7 @@ public class CommandParser {
                 int capacity = Integer.parseInt(reader.readLine());
                 System.out.print("Price (in GBP): ");
                 double price = Double.parseDouble(reader.readLine());
+                price = Math.round(price * 100.0) / 100.0; // Rounds to 2 d.p.
                 
                 LocalDate departureDate = parseDateWithAttempts(reader);
                 // Add Flight to Flight tree
