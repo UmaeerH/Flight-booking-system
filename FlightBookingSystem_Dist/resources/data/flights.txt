@@ -4,4 +4,9 @@
 4::MK528::Amsterdam::NYC::2025-12-30::42::42.5::false::
 5::LS428::LA::UK::2025-09-15::2::320.0::false::
 6::UK4842::UK::Australia::2025-12-24::20::120.99::false::
-7::MA420::USA::Germany::2026-06-11::24::85.82::false::
+7::MA420::USA::Germany::2026-06-11::3::85.0::false::
+8::AB123::Tokyo::Sydney::2025-01-20::15::150.75::false::
+9::CD456::Paris::Rome::2025-01-25::10::50.0::false::
+10::EF789::Madrid::Lisbon::2026-01-05::25::180.0::false::
+11::GH012::Berlin::Vienna::2025-11-18::8::90.0::false::
+12::IJ345::Moscow::Istanbul::2025-08-22::12::220.5::false::

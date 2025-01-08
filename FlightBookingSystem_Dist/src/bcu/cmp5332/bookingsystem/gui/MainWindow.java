@@ -192,9 +192,9 @@ public class MainWindow extends JFrame implements ActionListener {
         
         // headers for the table
         String[] columns = new String[]{"ID", "Flight No", "Origin", "Destination", 
-        		"Departure Date", "Remaining Seats"};
+        		"Departure Date", "Remaining Seats", "Current Price"};
 
-        Object[][] data = new Object[flightlist.size()][6];
+        Object[][] data = new Object[flightlist.size()][7];
         for (int i = 0; i < flightlist.size(); i++) {
             Flight flight = flightlist.get(i);
             data[i][0] = flight.getId();
@@ -208,6 +208,7 @@ public class MainWindow extends JFrame implements ActionListener {
             	data[i][4] = flight.getDepartureDate();
             }
             data[i][5] = flight.getFreeCapacity();
+            data[i][6] = flight.getBookingPrice();
         }
 
         DefaultTableModel model = new DefaultTableModel(data, columns) { 

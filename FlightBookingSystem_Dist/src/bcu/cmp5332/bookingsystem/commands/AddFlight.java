@@ -17,7 +17,7 @@ public class AddFlight implements Command {
     private final String destination;
     private final LocalDate departureDate;
     private final int capacity;
-    private final double price;
+    private double price;
     /**
      * Constructor to create an AddFlight command with specified flight details. 
      * @param flightNumber the flight number 
@@ -49,7 +49,8 @@ public class AddFlight implements Command {
             int lastIndex = flightBookingSystem.getFlights().size() - 1;
             maxId = flightBookingSystem.getFlights().get(lastIndex).getId();
         }
-        
+                
+        price = Math.round(price * 100.0) / 100.0;
         Flight flight = new Flight(++maxId, flightNumber, origin, destination, departureDate, capacity, price, false);
         flightBookingSystem.addFlight(flight);
         System.out.println("Flight #" + flight.getId() + " added.");

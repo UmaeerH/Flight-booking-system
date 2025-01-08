@@ -3,6 +3,7 @@ package bcu.cmp5332.bookingsystem.model;
 import bcu.cmp5332.bookingsystem.main.FlightBookingSystemException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -113,7 +114,7 @@ public class Flight {
 
     public String getDetailsLong() { 
     	StringBuilder returnString = new StringBuilder("Flight #" + id + "\nFlight No: " + flightNumber + "\nOrigin: " 
-    			+ origin + "\nDestination: " + destination + "\nDeparture Date: " + departureDate + ", Price: £" + price + 
+    			+ origin + "\nDestination: " + destination + "\nDeparture Date: " + departureDate + ", Base Price: £" + price + 
     			"\n--------------" + "\nPassenger(s): "
     			+ passengers.size() + "/" + capacity + "\n"); 
     	
@@ -145,4 +146,32 @@ public class Flight {
     	this.deleted = newDeleted;
     
     }
+    
+    /*
+     * Calculating price: we will use two multipliers
+     * Late Booking Multiplier: 
+     * If days until flight are <30, we will progressively charge more. (1.00 - 1.30x multi)
+     * 
+     * Availability Multiplier:
+     * % of seats filled result in higher cost. (1.00 - 1.5x multi)
+     * 
+     */
+    
+    public double getBookingPrice() {
+    	double bookingPrice = price;
+    	// Late booking multiplier
+    	long daysUntilLong = ChronoUnit.DAYS.between(LocalDate.now(), departureDate);
+    	int daysUntil = (int) daysUntilLong;
+    	if(daysUntil<30 & daysUntil>-1) {
+    		bookingPrice = bookingPrice * (1 + (0.01 * (30 - daysUntil)));
+    	}
+    	
+    	// Availability multiplier
+    	double fullness = (double) passengers.size() / capacity;
+    	bookingPrice *= (1 + (0.5 * fullness));
+    	bookingPrice = Math.round(bookingPrice * 100.0) / 100.0;
+
+    	return bookingPrice;
+    }
+    
 }
