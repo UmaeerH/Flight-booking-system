@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -65,8 +66,9 @@ public class MainWindow extends JFrame implements ActionListener {
         } catch (Exception ex) {
 
         }
-
         setTitle("Flight Booking Management System");
+        getContentPane().setBackground(new Color(252, 210, 241));
+        
 
         menuBar = new JMenuBar();
         setJMenuBar(menuBar);
@@ -135,8 +137,7 @@ public class MainWindow extends JFrame implements ActionListener {
         toFront();
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 /* Uncomment the following line to not terminate the console app when the window is closed */
-        setDefaultCloseOperation(DISPOSE_ON_CLOSE);        
-
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }	
 
 /* Uncomment the following code to run the GUI version directly from the IDE */
@@ -188,6 +189,7 @@ public class MainWindow extends JFrame implements ActionListener {
         	}
         }
         
+        
         // headers for the table
         String[] columns = new String[]{"ID", "Flight No", "Origin", "Destination", 
         		"Departure Date", "Remaining Seats"};
@@ -196,19 +198,50 @@ public class MainWindow extends JFrame implements ActionListener {
         for (int i = 0; i < flightlist.size(); i++) {
             Flight flight = flightlist.get(i);
             data[i][0] = flight.getId();
-            data[i][1] = flight.getFlightNumber();
-            data[i][2] = flight.getOrigin();
-            data[i][3] = flight.getDestination();
-            data[i][4] = flight.getDepartureDate();
+        	data[i][1] = flight.getFlightNumber();
+        	data[i][2] = flight.getOrigin();
+        	data[i][3] = flight.getDestination();
+        	
+            if (flight.getDepartureDate().isBefore(LocalDate.now())) {
+            	data[i][4] = "Departed: " + flight.getDepartureDate();
+            } else {
+            	data[i][4] = flight.getDepartureDate();
+            }
             data[i][5] = flight.getFreeCapacity();
         }
 
-        JTable table = new JTable(data, columns);
+        DefaultTableModel model = new DefaultTableModel(data, columns) { 
+    		private static final long serialVersionUID = 1352383242L;
+    		@Override 
+        	public boolean isCellEditable(int row, int column) {
+        		return false; // All cells are not editable 
+        		} 
+        	};
+
+        JTable table = new JTable(model);
         table.getColumnModel().getColumn(0).setPreferredWidth(20);
         table.getColumnModel().getColumn(5).setPreferredWidth(20); 	//ID and free seats are now smaller
         this.getContentPane().removeAll();
         this.getContentPane().add(new JScrollPane(table));
         this.revalidate();
+        
+        table.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if (e.getClickCount() == 2) { // Double-click detected
+                    int row = table.getSelectedRow();
+                    if (row != -1) {
+                        int flightID = (int) table.getValueAt(row, 0);
+                        try {
+							FlightDetailsWindow(flightID);
+						} catch (FlightBookingSystemException er) {
+							er.printStackTrace();
+						}
+                    }
+                }
+            }
+        });
+        
     }
     
     
@@ -305,7 +338,7 @@ public class MainWindow extends JFrame implements ActionListener {
         this.revalidate();
     }
     
-    // Window that pops up with a customer is double clicked. Works identical to displaying customer in CLI
+    // Window that pops up when a customer is double clicked. Works identical to displaying customer in CLI
     private void CustomerDetailsWindow(int customerId) throws FlightBookingSystemException {
         Customer customer = fbs.getCustomerByID(customerId);
         JFrame frame = new JFrame("Customer Details");
@@ -317,6 +350,26 @@ public class MainWindow extends JFrame implements ActionListener {
         textArea.setBackground(new Color(225, 228, 252));
 
         panel.add(new JLabel("Customer Details:"), BorderLayout.NORTH);
+        panel.add(new JScrollPane(textArea), BorderLayout.CENTER);
+
+        frame.getContentPane().add(panel);
+        frame.setSize(500, 400);
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
+    }
+    
+    // Window that pops up when a flight is double clicked
+    private void FlightDetailsWindow(int flightID) throws FlightBookingSystemException {
+        Flight flight = fbs.getFlightByID(flightID);
+        JFrame frame = new JFrame("Flight Details");
+        JPanel panel = new JPanel(new BorderLayout());
+        
+        JTextArea textArea = new JTextArea();
+        textArea.setText(fbs.displayFlight(flight));
+        textArea.setEditable(false);
+        textArea.setBackground(new Color(54, 133, 199));
+
+        panel.add(new JLabel("Flight Details:"), BorderLayout.NORTH);
         panel.add(new JScrollPane(textArea), BorderLayout.CENTER);
 
         frame.getContentPane().add(panel);

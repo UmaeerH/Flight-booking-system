@@ -56,6 +56,10 @@
 	        	throw new FlightBookingSystemException("Flight is full");
 	        }
 	        
+	        if (this.flight.getDepartureDate().isBefore(LocalDate.now())) {
+	        	throw new FlightBookingSystemException("Flight has already departed");
+	        }
+	        
 	    	int maxId = 0;
 	        if (flightBookingSystem.getBookings().size() > 0) {
 	            int lastIndex = flightBookingSystem.getBookings().size() - 1;

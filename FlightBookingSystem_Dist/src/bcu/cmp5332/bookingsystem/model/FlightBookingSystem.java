@@ -169,5 +169,9 @@ public class FlightBookingSystem {
         return returnString.toString();
     }
 
+    public String displayFlight(Flight flight) {
+    	return flight.getDetailsLong();
+    }
+    
     
 }

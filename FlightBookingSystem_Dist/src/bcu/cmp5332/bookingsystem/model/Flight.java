@@ -113,7 +113,7 @@ public class Flight {
 
     public String getDetailsLong() { 
     	StringBuilder returnString = new StringBuilder("Flight #" + id + "\nFlight No: " + flightNumber + "\nOrigin: " 
-    			+ origin + "\nDestination: " + destination + "\nDeparture Date: " + departureDate + 
+    			+ origin + "\nDestination: " + destination + "\nDeparture Date: " + departureDate + ", Price: £" + price + 
     			"\n--------------" + "\nPassenger(s): "
     			+ passengers.size() + "/" + capacity + "\n"); 
     	
