@@ -17,7 +17,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 /**
- * The RemoveFlightWindow class provides a graphical user interface for users to remove an existing customer.
+ * The RemoveCustomerWindow class provides a graphical user interface for users to remove an existing customer.
  * @author UmaeerH
  * @author AnisaU03
  * @version main 
@@ -90,7 +90,7 @@ public class RemoveCustomerWindow extends JFrame implements ActionListener {
 
     }
     /**
-     * Cancels a booking using the provided booking ID. 
+     * Removes a customer using the provided booking ID. 
      */
     private void remCust() {
         try {

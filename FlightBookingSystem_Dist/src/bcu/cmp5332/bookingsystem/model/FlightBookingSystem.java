@@ -130,24 +130,37 @@ public class FlightBookingSystem {
         	int bookingAmt = 0;
 			for (Booking booking : customer.getBookings()) {
 				if (!booking.getCancelled()) {
-	                bookingAmt++;
-	                returnString.append("================\n")
-	                  .append("Booking ID: ").append(booking.getId())
-	                  .append(", Booking Date: ").append(booking.getBookingDate())
-	                  .append(", Cost: £").append(booking.getCost())
-	                  .append("\nFlight: ").append(booking.getFlight().getFlightNumber())
-	                  .append(" : ").append(booking.getFlight().getOrigin())
-	                  .append(" to ").append(booking.getFlight().getDestination()).append("\n");
-	            } else {
+					
+					if(booking.getFlight().getDepartureDate().isBefore(LocalDate.now())) {
+		                returnString.append("========EXPIRED========\n")
+		                  .append("Booking ID: ").append(booking.getId())
+		                  .append(", Booking Date: ").append(booking.getBookingDate())
+		                  .append(", Flight Date: ").append(booking.getFlight().getDepartureDate())
+		                  .append("\nCost: £").append(booking.getCost())
+		                  .append(", Flight: ").append(booking.getFlight().getFlightNumber())
+		                  .append(" : ").append(booking.getFlight().getOrigin())
+		                  .append(" to ").append(booking.getFlight().getDestination()).append("\n");
+					} else {
+						bookingAmt++;
+	                	returnString.append("================\n")
+	                	  .append("Booking ID: ").append(booking.getId())
+	                	  .append(", Booking Date: ").append(booking.getBookingDate())
+	                	  .append(", Flight Date: ").append(booking.getFlight().getDepartureDate())
+	                	  .append("\nCost: £").append(booking.getCost())
+	                	  .append(", Flight: ").append(booking.getFlight().getFlightNumber())
+	                	  .append(" : ").append(booking.getFlight().getOrigin())
+	                	  .append(" to ").append(booking.getFlight().getDestination()).append("\n");
+					}
+				} else {
 	                returnString.append("========CANCELLED========\n")
 	                  .append("Booking ID: ").append(booking.getId())
-	                  .append(", Date: CANCELLED")
-	                  .append(", Cost: £").append(booking.getCost()).append(" (cancellation charge)")
-	                  .append("\nFlight: ").append(booking.getFlight().getFlightNumber())
+	                  .append(", Booking Date: ").append(booking.getBookingDate())
+	                  .append(", Flight Date: CANCELLED")
+	                  .append("\nCost: £").append(booking.getCost()).append(" (cancellation charge)")
+	                  .append(", Flight: ").append(booking.getFlight().getFlightNumber())
 	                  .append(" : ").append(booking.getFlight().getOrigin())
 	                  .append(" to ").append(booking.getFlight().getDestination()).append("\n");
 	            }
-
         	}
 	        returnString.append("================\n").append(bookingAmt).append(" active booking(s)");
         } else {

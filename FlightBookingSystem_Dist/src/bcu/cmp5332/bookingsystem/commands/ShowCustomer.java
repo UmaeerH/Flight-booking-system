@@ -1,5 +1,7 @@
 package bcu.cmp5332.bookingsystem.commands;
 
+import java.time.LocalDate;
+
 import bcu.cmp5332.bookingsystem.main.FlightBookingSystemException;
 import bcu.cmp5332.bookingsystem.model.Booking;
 import bcu.cmp5332.bookingsystem.model.Customer;
@@ -35,19 +37,29 @@ public class ShowCustomer implements Command {
             System.out.println("-------------------\nBookings:");
         	for (Booking booking : customer.getBookings()) {
         		if(booking.getCancelled() == false) {
-        			bookingAmt++;
-        			System.out.println(
-        							"================\n" +
-        							"Booking ID: " + booking.getId() + // I hate printing large bits
-        							", Booking Date: " + booking.getBookingDate() + ", Cost: £" + booking.getCost() 
-        							+ "\n" + "Flight: " + booking.getFlight().getFlightNumber() + " : " +
-        							booking.getFlight().getOrigin() + " to " + booking.getFlight().getDestination());
+        			if(booking.getFlight().getDepartureDate().isBefore(LocalDate.now())) {
+        					System.out.println(
+    						"========EXPIRED========\n" +
+    						"Booking ID: " + booking.getId() + // I hate printing large bits
+    						", Flight Date: " + booking.getFlight().getDepartureDate() + ", Cost: £" + booking.getCost() 
+    						+ "\n" + "Flight: " + booking.getFlight().getFlightNumber() + " : " +
+    						booking.getFlight().getOrigin() + " to " + booking.getFlight().getDestination());
+        				
+        			}else{
+        				bookingAmt++;
+        				System.out.println(
+        					"================\n" +
+        					"Booking ID: " + booking.getId() + // I hate printing large bits
+        					", Flight Date: " + booking.getFlight().getDepartureDate() + ", Cost: £" + booking.getCost() 
+        					+ "\n" + "Flight: " + booking.getFlight().getFlightNumber() + " : " +
+        					booking.getFlight().getOrigin() + " to " + booking.getFlight().getDestination());
+        			}
         		}
         		else {
         			System.out.println(
 							"========CANCELLED========\n" +
 							"Booking ID: " + booking.getId() + // I hate printing large bits
-							", Date: CANCELLED" + ", Cost: £" + booking.getCost() + "(cancellation charge)"
+							", Flight Date: CANCELLED" + ", Cost: £" + booking.getCost() + "(cancellation charge)"
 							+ "\n" + "Flight: " + booking.getFlight().getFlightNumber() + " : " +
         							booking.getFlight().getOrigin() + " to " + booking.getFlight().getDestination());
         		}
