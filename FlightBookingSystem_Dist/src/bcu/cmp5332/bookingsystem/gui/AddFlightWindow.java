@@ -88,14 +88,14 @@ public class AddFlightWindow extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent ae) {
         if (ae.getSource() == addBtn) {
-            addBook();
+        	addFli();
         } else if (ae.getSource() == cancelBtn) {
             this.setVisible(false);
         }
 
     }
 
-    private void addBook() {
+    private void addFli() {
         try {
             String flightNumber = flightNoText.getText();
             String origin = originText.getText();

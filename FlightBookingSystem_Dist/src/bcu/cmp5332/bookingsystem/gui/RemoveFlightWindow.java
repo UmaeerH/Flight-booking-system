@@ -1,7 +1,7 @@
 package bcu.cmp5332.bookingsystem.gui;
 
-import bcu.cmp5332.bookingsystem.commands.AddBooking;
 import bcu.cmp5332.bookingsystem.commands.Command;
+import bcu.cmp5332.bookingsystem.commands.RemoveFlight;
 import bcu.cmp5332.bookingsystem.main.FlightBookingSystemException;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
@@ -17,25 +17,24 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 /**
- * GUI window for adding a new booking to the flight booking system. 
+ * The RemoveFlightWindow class provides a graphical user interface for users to remove an existing flight.
  * @author UmaeerH
  * @author AnisaU03
- * @version main
+ * @version main 
  */
-public class AddBookingWindow extends JFrame implements ActionListener {
+public class RemoveFlightWindow extends JFrame implements ActionListener {
 	
-    private static final long serialVersionUID = -252432525878027291L;
+    private static final long serialVersionUID = -553585278027291L;
 	private MainWindow mw;
-    private JTextField customerIDText = new JTextField();
     private JTextField flightIDText = new JTextField();
 
-    private JButton addBtn = new JButton("Add");
-    private JButton cancelBtn = new JButton("Cancel");
+    private JButton delBtn = new JButton("Remove Flight");
+    private JButton cancelBtn = new JButton("Back");
     /**
-     * Constructs an AddBookingWindow with a reference to the main window. 
-     * @param mw the main window 
+     * Constructs a new RemoveFlightWindow. 
+     * @param mw The MainWindow instance from which this window is invoked.
      */
-    public AddBookingWindow(MainWindow mw) {
+    public RemoveFlightWindow(MainWindow mw) {
         this.mw = mw;
         initialize();
     }
@@ -52,13 +51,11 @@ public class AddBookingWindow extends JFrame implements ActionListener {
 
         }
 
-        setTitle("Create a new booking");
+        setTitle("Remove a flight from the system");
 
         setSize(350, 220);
         JPanel topPanel = new JPanel();
         topPanel.setLayout(new GridLayout(6, 2));
-        topPanel.add(new JLabel("Customer ID: "));
-        topPanel.add(customerIDText);
         topPanel.add(new JLabel("Flight ID: "));
         topPanel.add(flightIDText);
        
@@ -66,10 +63,10 @@ public class AddBookingWindow extends JFrame implements ActionListener {
         JPanel bottomPanel = new JPanel();
         bottomPanel.setLayout(new GridLayout(1, 3));
         bottomPanel.add(new JLabel("     "));
-        bottomPanel.add(addBtn);
+        bottomPanel.add(delBtn);
         bottomPanel.add(cancelBtn);
 
-        addBtn.addActionListener(this);
+        delBtn.addActionListener(this);
         cancelBtn.addActionListener(this);
 
         this.getContentPane().add(topPanel, BorderLayout.CENTER);
@@ -80,40 +77,37 @@ public class AddBookingWindow extends JFrame implements ActionListener {
 
     }
     /**
-     * Handles action events for the buttons. 
-     * @param ae the action event 
+     * Handles button click events. 
+     * @param ae The action event triggered by the button click. 
      */
-
     @Override
     public void actionPerformed(ActionEvent ae) {
-        if (ae.getSource() == addBtn) {
-            addBook();
+        if (ae.getSource() == delBtn) {
+        	remFlight();
         } else if (ae.getSource() == cancelBtn) {
             this.setVisible(false);
         }
 
     }
     /**
-     * Adds a new booking based on the input data and executes the AddBooking command.
+     * Removes a Flight using the provided Flight ID. 
      */
-    private void addBook() {
+    private void remFlight() {
         try {
-            String str_custID = customerIDText.getText();
-            String str_flightID = flightIDText.getText();
+            String str_fliID = flightIDText.getText();
             
             // parsing the data
-            int custID = Integer.parseInt(str_custID);
-            int flightID = Integer.parseInt(str_flightID);
+            int flightID = Integer.parseInt(str_fliID);
 
-            // create and execute the AddFlight Command
-            Command addBooking = new AddBooking(custID, flightID);
-            addBooking.execute(mw.getFlightBookingSystem());
+            // create and execute the RemoveFlight Command
+            Command removeFlight = new RemoveFlight(flightID);
+            removeFlight.execute(mw.getFlightBookingSystem());
             // refresh the view with the list of flights
             mw.displayFlights();
-            // hide (close) the AddFlightWindow
+            // hide (close) the RemoveFlights window
             this.setVisible(false);
         } catch (FlightBookingSystemException ex) {
-            JOptionPane.showMessageDialog(this, ex, "Error making booking:", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, ex, "Error removing flight", JOptionPane.ERROR_MESSAGE);
         }
     }
 

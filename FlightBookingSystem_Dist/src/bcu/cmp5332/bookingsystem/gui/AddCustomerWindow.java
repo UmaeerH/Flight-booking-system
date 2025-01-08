@@ -89,7 +89,7 @@ public class AddCustomerWindow extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent ae) {
         if (ae.getSource() == addBtn) {
-            addBook();
+        	addCust();
         } else if (ae.getSource() == cancelBtn) {
             this.setVisible(false);
         }
@@ -98,7 +98,7 @@ public class AddCustomerWindow extends JFrame implements ActionListener {
     /**
      * Adds a new customer based on the input data and executes the AddCustomer command. 
      */
-    private void addBook() {
+    private void addCust() {
         try {
             String customerName = custNameText.getText();
             String customerNumb = custPhoneText.getText();

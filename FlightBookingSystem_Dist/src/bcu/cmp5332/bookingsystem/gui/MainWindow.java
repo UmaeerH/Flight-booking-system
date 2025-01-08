@@ -141,10 +141,10 @@ public class MainWindow extends JFrame implements ActionListener {
 
 /* Uncomment the following code to run the GUI version directly from the IDE */
     //FIXME - comment lines below to convert back to CLI
-    //public static void main(String[] args) throws IOException, FlightBookingSystemException {
-    //    FlightBookingSystem fbs = FlightBookingSystemData.load();
-    //     new MainWindow(fbs);			
-    //}
+    public static void main(String[] args) throws IOException, FlightBookingSystemException {
+        FlightBookingSystem fbs = FlightBookingSystemData.load();
+         new MainWindow(fbs);			
+    }
 
 
     @Override
@@ -162,7 +162,7 @@ public class MainWindow extends JFrame implements ActionListener {
         } else if (ae.getSource() == flightsAdd) {
             new AddFlightWindow(this);
         } else if (ae.getSource() == flightsDel) {
-        	//TODO  
+        	new RemoveFlightWindow(this);
         } else if (ae.getSource() == bookingsView) {
         	displayBookings();
         } else if (ae.getSource() == bookingsIssue) {
@@ -174,7 +174,7 @@ public class MainWindow extends JFrame implements ActionListener {
         } else if (ae.getSource() == custAdd) {
         	 new AddCustomerWindow(this);
         } else if (ae.getSource() == custDel) {
-            //TODO
+            new RemoveCustomerWindow(this);
         }
     }
 
