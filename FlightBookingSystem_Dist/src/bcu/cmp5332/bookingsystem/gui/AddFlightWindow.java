@@ -19,19 +19,51 @@ import javax.swing.JTextField;
 import javax.swing.UIManager;
 
 public class AddFlightWindow extends JFrame implements ActionListener {
-
+	/**
+	 * The serialVersionUID helps maintain the compatibility of serialised objects across different versions of a class
+	 */
     private static final long serialVersionUID = -2525255480273182291L;
+    /** 
+     * This field is used to hold a reference to the main application window
+     */
 	private MainWindow mw;
+	/**
+     * Creates a new text field, flight's no., for user input in a graphical user interface (GUI)
+     */
     private JTextField flightNoText = new JTextField();
+    /**
+     * Creates a new text field, in-bound destination, for user input in a graphical user interface (GUI)
+     */
     private JTextField originText = new JTextField();
+    /**
+     * Creates a new text field, out-bound destination, for user input in a graphical user interface (GUI)
+     */
     private JTextField destinationText = new JTextField();
+    /**
+     * Creates a new text field, departure date, for user input in a graphical user interface (GUI)
+     */
     private JTextField depDateText = new JTextField();
+    /**
+     * Creates a new text field, vacancy, for user input in a graphical user interface (GUI)
+     */
     private JTextField capacityText = new JTextField();
+    /**
+     * Creates a new text field, price, for user input in a graphical user interface (GUI)
+     */
     private JTextField priceText = new JTextField();
-
+    /**
+     * Creates a new button for a graphical user interface (GUI) with the label "Add" on it
+     */
     private JButton addBtn = new JButton("Add");
+    /**
+     * Creates a new button for a graphical user interface (GUI) with the label "Cancel" on it
+     */
     private JButton cancelBtn = new JButton("Cancel");
-
+    
+    /**
+     * Constructs an AddCustomerWindow with a reference to the main window. 
+     * @param mw the main window 
+     */
     public AddFlightWindow(MainWindow mw) {
         this.mw = mw;
         initialize();
@@ -84,7 +116,11 @@ public class AddFlightWindow extends JFrame implements ActionListener {
         setVisible(true);
 
     }
-
+    
+    /**
+     * Handles action events for the buttons. 
+     * @param ae the action event 
+     */
     @Override
     public void actionPerformed(ActionEvent ae) {
         if (ae.getSource() == addBtn) {
@@ -94,7 +130,10 @@ public class AddFlightWindow extends JFrame implements ActionListener {
         }
 
     }
-
+    
+    /**
+     * Adds a new flight based on the input data and executes the AddFlight command.
+     */
     private void addFli() {
         try {
             String flightNumber = flightNoText.getText();

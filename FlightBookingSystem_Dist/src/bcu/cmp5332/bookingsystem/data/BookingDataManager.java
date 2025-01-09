@@ -19,7 +19,10 @@ import java.util.Scanner;
  */
 
 public class BookingDataManager implements DataManager {
-    
+	
+	/**
+     * The path to the bookings data file.
+     */
     public final String RESOURCE = "./resources/data/bookings.txt";
     /** 
      * Loads booking data from a file into the flight booking system. 

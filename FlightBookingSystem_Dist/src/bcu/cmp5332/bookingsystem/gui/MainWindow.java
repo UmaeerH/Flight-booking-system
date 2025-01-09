@@ -18,40 +18,99 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+/**
+ * The MainWindow class provides the main graphical user interface to the user.
+ * @author UmaeerH
+ * @author AnisaU03
+ * @version main 
+ */
 @SuppressWarnings("unused")
 
 public class MainWindow extends JFrame implements ActionListener {
+	/**
+	 * The serialVersionUID helps maintain the compatibility of serialised objects across different versions of a class
+	 */
 	private static final long serialVersionUID = -565274564213160712L;
-	
+	/**
+	 * Declares a private field named menuBar that is of type JMenuBar
+	 */
 	private JMenuBar menuBar;
+	/**
+	 * Declares a private field named adminMenu that is of type JMenu
+	 */
     private JMenu adminMenu;
+    /**
+	 * Declares a private field named flightsMenu that is of type JMenu
+	 */
     private JMenu flightsMenu;
+    /**
+	 * Declares a private field named bookingsMenu that is of type JMenu
+	 */
     private JMenu bookingsMenu;
+    /**
+	 * Declares a private field named customersMenu that is of type JMenu
+	 */
     private JMenu customersMenu;
-
+    /**
+	 * Declares a private field named adminExit that is of type JMenuItem
+	 */
     private JMenuItem adminExit;
-
+    /**
+	 * Declares a private field named flightsView that is of type JMenuItem
+	 */
     private JMenuItem flightsView;
+    /**
+	 * Declares a private field named flightsAdd that is of type JMenuItem
+	 */
     private JMenuItem flightsAdd;
+    /**
+	 * Declares a private field named flightDel that is of type JMenuItem
+	 */
     private JMenuItem flightsDel;
-    
+    /**
+	 * Declares a private field named bookingsView that is of type JMenuItem
+	 */
     private JMenuItem bookingsView;
+    /**
+	 * Declares a private field named bookingsIssue that is of type JMenuItem
+	 */
     private JMenuItem bookingsIssue;
+    /**
+	 * Declares a private field named bookingsUpdate that is of type JMenuItem
+	 */
     private JMenuItem bookingsUpdate;
+    /**
+	 * Declares a private field named bookingsCancel that is of type JMenuItem
+	 */
     private JMenuItem bookingsCancel;
-
+    /**
+	 * Declares a private field named custView that is of type JMenuItem
+	 */
     private JMenuItem custView;
+    /**
+	 * Declares a private field named custAdd that is of type JMenuItem
+	 */
     private JMenuItem custAdd;
+    /**
+	 * Declares a private field named custDel that is of type JMenuItem
+	 */
     private JMenuItem custDel;
-
+    /**
+	 * Declares a private field named fbs that is of type FlightBookingSystem
+	 */
     private FlightBookingSystem fbs;
-
+    /**
+	 * Declares a constructor for the MainWindow class
+	 */
     public MainWindow(FlightBookingSystem fbs) {
 
         initialize();
         this.fbs = fbs;
     }
-    
+    /**
+     * Declares a public method named getFlightBookingSystem that returns an instance of the FlightBookingSystem class
+     * @return
+     */
     public FlightBookingSystem getFlightBookingSystem() {
         return fbs;
     }
@@ -146,8 +205,14 @@ public class MainWindow extends JFrame implements ActionListener {
         FlightBookingSystem fbs = FlightBookingSystemData.load();
          new MainWindow(fbs);			
     }
-
-
+    /**
+     * Handles action events triggered by various buttons in the application. 
+     * This method performs different actions based on the source of the event, 
+     * such as exiting the application, viewing flights, adding flights, removing flights, 
+     * viewing bookings, issuing bookings, cancelling bookings, updating bookings, 
+     * viewing customers, adding customers, and removing customers. 
+     * @param ae the action event that triggered this method 
+     **/
     @Override
     public void actionPerformed(ActionEvent ae) {
 
@@ -180,7 +245,11 @@ public class MainWindow extends JFrame implements ActionListener {
             new RemoveCustomerWindow(this);
         }
     }
-
+    /**
+     * Displays a list of non-deleted flights from the flight booking system. 
+     * This method retrieves all flights from the flight booking system, 
+     * filters out the deleted flights, and creates a list of active flights. 
+     */
     public void displayFlights() {
     	List<Flight> flightlistFull = fbs.getFlights();
         List<Flight> flightlist = new ArrayList<>();
@@ -248,7 +317,12 @@ public class MainWindow extends JFrame implements ActionListener {
     }
     
     
-    
+    /** 
+     * Displays a list of non-deleted customers from the flight booking system. 
+     * This method retrieves all customers from the flight booking system, 
+     * filters out the deleted customers, and creates a list of active customers. 
+     * The method then displays this list in a table format. 
+     */
     public void displayCust() {
         List<Customer> customerlistFull = fbs.getCustomers();
         List<Customer> customerlist = new ArrayList<>();
@@ -305,7 +379,12 @@ public class MainWindow extends JFrame implements ActionListener {
         this.getContentPane().add(new JScrollPane(table));
         this.revalidate();
     }
-        
+    /** 
+     * Displays a list of non-cancelled bookings from the flight booking system. 
+     * This method retrieves all bookings from the flight booking system, 
+     * filters out the cancelled bookings, and creates a list of active bookings. 
+     * The method then displays this list in a table format. 
+     */    
     public void displayBookings() {
         List<Booking> bookinglistFull = fbs.getBookings();
         List<Booking> bookinglist = new ArrayList<>();
@@ -341,7 +420,11 @@ public class MainWindow extends JFrame implements ActionListener {
         this.revalidate();
     }
     
-    // Window that pops up when a customer is double clicked. Works identical to displaying customer in CLI
+    /**
+     * Window that pops up when a customer is double clicked. Works identical to displaying customer in CLI
+     * @param customerId
+     * @throws FlightBookingSystemException
+     */
     private void CustomerDetailsWindow(int customerId) throws FlightBookingSystemException {
         Customer customer = fbs.getCustomerByID(customerId);
         JFrame frame = new JFrame("Customer Details");
@@ -361,7 +444,11 @@ public class MainWindow extends JFrame implements ActionListener {
         frame.setVisible(true);
     }
     
-    // Window that pops up when a flight is double clicked
+    /**
+     *  Window that pops up when a flight is double clicked
+     * @param flightID
+     * @throws FlightBookingSystemException
+     */
     private void FlightDetailsWindow(int flightID) throws FlightBookingSystemException {
         Flight flight = fbs.getFlightByID(flightID);
         JFrame frame = new JFrame("Flight Details");

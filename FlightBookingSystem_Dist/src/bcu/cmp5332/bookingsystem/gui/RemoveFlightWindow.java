@@ -23,12 +23,25 @@ import javax.swing.UIManager;
  * @version main 
  */
 public class RemoveFlightWindow extends JFrame implements ActionListener {
-	
+	/**
+	 * The serialVersionUID helps maintain the compatibility of serialised objects across different versions of a class
+	 */
     private static final long serialVersionUID = -553585278027291L;
+    /** 
+     * This field is used to hold a reference to the main application window
+     */
 	private MainWindow mw;
+	/**
+     * Creates a new text field, customer ID, for user input in a graphical user interface (GUI)
+     */
     private JTextField flightIDText = new JTextField();
-
+    /**
+     * Creates a new button for a graphical user interface (GUI) with the label "Remove Flight" on it
+     */
     private JButton delBtn = new JButton("Remove Flight");
+    /**
+     * Creates a new button for a graphical user interface (GUI) with the label "Back" on it
+     */
     private JButton cancelBtn = new JButton("Back");
     /**
      * Constructs a new RemoveFlightWindow. 

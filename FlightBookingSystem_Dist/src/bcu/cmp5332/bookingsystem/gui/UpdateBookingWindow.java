@@ -25,12 +25,29 @@ import bcu.cmp5332.bookingsystem.main.FlightBookingSystemException;
  */
 
 public class UpdateBookingWindow extends JFrame implements ActionListener {
+	/**
+	 * The serialVersionUID helps maintain the compatibility of serialised objects across different versions of a class
+	 */
 	private static final long serialVersionUID = -228991293260914891L;
+	/** 
+     * This field is used to hold a reference to the main application window
+     */
 	private MainWindow mw;
+	/**
+     * Creates a new text field, booking ID, for user input in a graphical user interface (GUI)
+     */
     private JTextField bookingIDText = new JTextField();
+    /**
+     * Creates a new text field, flight ID, for user input in a graphical user interface (GUI)
+     */
     private JTextField flightIDText = new JTextField();
-
+    /**
+     * Creates a new button for a graphical user interface (GUI) with the label "Add" on it
+     */
     private JButton addBtn = new JButton("Add");
+    /**
+     * Creates a new button for a graphical user interface (GUI) with the label "Cancel" on it
+     */
     private JButton cancelBtn = new JButton("Cancel");
     /**
      * Constructs an UpdateBookingWindow with a reference to the main window. 

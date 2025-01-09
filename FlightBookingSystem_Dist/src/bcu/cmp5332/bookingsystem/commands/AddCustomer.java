@@ -29,6 +29,7 @@ public class AddCustomer implements Command {
         this.phone = phone;
         this.email = email;
     }
+    
     /**
      * Executes the command to add a new customer to the flight booking system. *
      * @param flightBookingSystem the flight booking system to add the customer to 

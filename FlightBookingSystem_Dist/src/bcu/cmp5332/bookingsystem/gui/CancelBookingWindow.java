@@ -23,12 +23,25 @@ import javax.swing.UIManager;
  * @version main 
  */
 public class CancelBookingWindow extends JFrame implements ActionListener {
-	
+	/**
+	 * The serialVersionUID helps maintain the compatibility of serialised objects across different versions of a class
+	 */
     private static final long serialVersionUID = -5535878027291L;
+    /** 
+     * This field is used to hold a reference to the main application window
+     */
 	private MainWindow mw;
+	/**
+     * Creates a new text field, booking ID, for user input in a graphical user interface (GUI)
+     */
     private JTextField bookingIDText = new JTextField();
-
+    /**
+     * Creates a new button for a graphical user interface (GUI) with the label "Confirm Cancellation" on it
+     */
     private JButton delBtn = new JButton("Confirm Cancellation");
+    /**
+     * Creates a new button for a graphical user interface (GUI) with the label "Back" on it
+     */
     private JButton cancelBtn = new JButton("Back");
     /**
      * Constructs a new CancelBookingWindow. 
