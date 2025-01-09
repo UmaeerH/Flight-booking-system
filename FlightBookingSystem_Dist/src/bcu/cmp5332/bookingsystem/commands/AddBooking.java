@@ -1,14 +1,16 @@
 	package bcu.cmp5332.bookingsystem.commands;
 	
-	import java.time.LocalDate;
+	import java.io.IOException;
+import java.time.LocalDate;
 	/**
 	 * Command to add a new booking to the flight booking system.
 	 * @author AnisaU
 	 * @author UmaeerH
 	 * @version main
 	 */
-	
-	import bcu.cmp5332.bookingsystem.main.FlightBookingSystemException;
+
+import bcu.cmp5332.bookingsystem.data.BookingDataManager;
+import bcu.cmp5332.bookingsystem.main.FlightBookingSystemException;
 	import bcu.cmp5332.bookingsystem.model.*;
 	import bcu.cmp5332.bookingsystem.model.FlightBookingSystem;
 	
@@ -79,6 +81,20 @@
 	        	return; // break
 	        }
 	        flightBookingSystem.addBooking(booking);
+	        
+	        try { // Booking Save + revert block
+	        	BookingDataManager bookingDataManager = new BookingDataManager();
+	        	bookingDataManager.storeData(flightBookingSystem);
+	        } catch (IOException ioE) {
+	        	BookingDataManager bookingDataManager2 = new BookingDataManager();
+				try {
+					bookingDataManager2.loadData(flightBookingSystem);
+				} catch (IOException | FlightBookingSystemException e) {
+					e.printStackTrace();
+				}
+	        	throw new FlightBookingSystemException("Unable to save changes, reverting system " + ioE.getMessage());
+	        }
+	        
 	        
 	    }
 	}

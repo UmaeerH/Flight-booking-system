@@ -1,5 +1,8 @@
 package bcu.cmp5332.bookingsystem.commands;
 
+import java.io.IOException;
+
+import bcu.cmp5332.bookingsystem.data.FlightDataManager;
 import bcu.cmp5332.bookingsystem.main.FlightBookingSystemException;
 import bcu.cmp5332.bookingsystem.model.Flight;
 import bcu.cmp5332.bookingsystem.model.FlightBookingSystem;
@@ -43,8 +46,21 @@ public class RemoveFlight implements Command {
         		throw new FlightBookingSystemException("Flight cannot be deleted as it has passengers");
         }
 
-    	
     	flightBookingSystem.removeFlight(flightID);
+    	
+    	try { // Flight Save + revert block
+        	FlightDataManager flightDataManager = new FlightDataManager();
+			flightDataManager.storeData(flightBookingSystem);
+        } catch (IOException ioE) {
+        	FlightDataManager flightDataManager2 = new FlightDataManager();
+			try {
+				flightDataManager2.loadData(flightBookingSystem);
+			} catch (IOException | FlightBookingSystemException e) {
+				e.printStackTrace();
+			}
+        	throw new FlightBookingSystemException("Unable to save changes, reverting system " + ioE.getMessage());
+        }
+    	
         System.out.println("Flight #" + flightID + " has been removed.");
     }
 }

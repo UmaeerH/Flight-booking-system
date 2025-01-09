@@ -1,5 +1,8 @@
 package bcu.cmp5332.bookingsystem.commands;
 
+import java.io.IOException;
+
+import bcu.cmp5332.bookingsystem.data.BookingDataManager;
 import bcu.cmp5332.bookingsystem.main.FlightBookingSystemException;
 import bcu.cmp5332.bookingsystem.model.*;
 
@@ -34,6 +37,20 @@ public class CancelBooking implements Command {
 		canCost += 10;
 		canCost = Math.round(canCost * 100.0) / 100.0;
 		booking.setCanCost(canCost);
+		
+		try { // Booking Save + revert block
+        	BookingDataManager bookingDataManager = new BookingDataManager();
+        	bookingDataManager.storeData(flightBookingSystem);
+        } catch (IOException ioE) {
+        	BookingDataManager bookingDataManager2 = new BookingDataManager();
+			try {
+				bookingDataManager2.loadData(flightBookingSystem);
+			} catch (IOException | FlightBookingSystemException e) {
+				e.printStackTrace();
+			}
+        	throw new FlightBookingSystemException("Unable to save changes, reverting system " + ioE.getMessage());
+        }
+		
 		System.out.println("Booking #" + booking.getId() + " has been cancelled");
 	}
 }

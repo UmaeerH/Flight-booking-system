@@ -5,3 +5,4 @@
 5::Yuri Gagarin::+758725827952::Gagarin@mail.ru::false::
 6::Craig::472784265428::Craig@Bowiemail.com::false::
 7::Amelia Dawson::555123-4567::Amelia@yahoo.com::false::
+8::Amelia Deleted::55283-4867::deleyed@yahoo.com::true::

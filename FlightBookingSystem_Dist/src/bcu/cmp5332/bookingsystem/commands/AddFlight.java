@@ -3,6 +3,9 @@ package bcu.cmp5332.bookingsystem.commands;
 import bcu.cmp5332.bookingsystem.main.FlightBookingSystemException;
 import bcu.cmp5332.bookingsystem.model.Flight;
 import bcu.cmp5332.bookingsystem.model.FlightBookingSystem;
+import bcu.cmp5332.bookingsystem.data.*;
+
+import java.io.IOException;
 import java.time.LocalDate;
 /**
  * Command to add a new flight to the flight booking system.
@@ -53,6 +56,18 @@ public class AddFlight implements Command {
         price = Math.round(price * 100.0) / 100.0;
         Flight flight = new Flight(++maxId, flightNumber, origin, destination, departureDate, capacity, price, false);
         flightBookingSystem.addFlight(flight);
+        try { // Flight Save + revert block
+        	FlightDataManager flightDataManager = new FlightDataManager();
+			flightDataManager.storeData(flightBookingSystem);
+        } catch (IOException ioE) {
+        	FlightDataManager flightDataManager2 = new FlightDataManager();
+			try {
+				flightDataManager2.loadData(flightBookingSystem);
+			} catch (IOException | FlightBookingSystemException e) {
+				e.printStackTrace();
+			}
+        	throw new FlightBookingSystemException("Unable to save changes, reverting system " + ioE.getMessage());
+        }
         System.out.println("Flight #" + flight.getId() + " added.");
     }
 }

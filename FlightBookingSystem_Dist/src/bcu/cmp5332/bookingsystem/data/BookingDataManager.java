@@ -70,6 +70,7 @@ public class BookingDataManager implements DataManager {
      */
     @Override
     public void storeData(FlightBookingSystem fbs) throws IOException {
+    	System.out.println("Storing data to file...");
     	try (PrintWriter out = new PrintWriter(new FileWriter(RESOURCE))) {
             for (Booking booking : fbs.getBookings()) {
                 out.print(booking.getId() + SEPARATOR);

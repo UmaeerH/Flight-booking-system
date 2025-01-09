@@ -1,5 +1,8 @@
 package bcu.cmp5332.bookingsystem.commands;
 
+import java.io.IOException;
+
+import bcu.cmp5332.bookingsystem.data.CustomerDataManager;
 import bcu.cmp5332.bookingsystem.main.FlightBookingSystemException;
 import bcu.cmp5332.bookingsystem.model.Customer;
 import bcu.cmp5332.bookingsystem.model.FlightBookingSystem;
@@ -41,6 +44,20 @@ public class AddCustomer implements Command {
         
         Customer customer = new Customer(++maxId, name, phone, email, false);
         flightBookingSystem.addCustomer(customer);
+        
+        try { // Customer Save + revert block
+        	CustomerDataManager customerDataManager = new CustomerDataManager();
+        	customerDataManager.storeData(flightBookingSystem);
+        } catch (IOException ioE) {
+        	CustomerDataManager customerDataManager2 = new CustomerDataManager();
+			try {
+				customerDataManager2.loadData(flightBookingSystem);
+			} catch (IOException | FlightBookingSystemException e) {
+				e.printStackTrace();
+			}
+        	throw new FlightBookingSystemException("Unable to save changes, reverting system " + ioE.getMessage());
+        }
+        
         System.out.println("Customer #" + customer.getId() + ", " + customer.getName() + " added.");
     }
 }

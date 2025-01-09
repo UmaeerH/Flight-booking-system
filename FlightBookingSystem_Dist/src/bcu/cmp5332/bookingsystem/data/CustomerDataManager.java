@@ -56,6 +56,7 @@ public class CustomerDataManager implements DataManager {
 
     @Override
     public void storeData(FlightBookingSystem fbs) throws IOException {
+    	System.out.println("Storing data to file...");
     	try (PrintWriter out = new PrintWriter(new FileWriter(RESOURCE))) {
             for (Customer customer : fbs.getCustomers()) {
                 out.print(customer.getId() + SEPARATOR);
