@@ -1,19 +1,18 @@
-	package bcu.cmp5332.bookingsystem.commands;
-	
-	import java.io.IOException;
+package bcu.cmp5332.bookingsystem.commands;
+
+import java.io.IOException;
 import java.time.LocalDate;
+import bcu.cmp5332.bookingsystem.data.BookingDataManager;
+import bcu.cmp5332.bookingsystem.main.FlightBookingSystemException;
+import bcu.cmp5332.bookingsystem.model.*;
+import bcu.cmp5332.bookingsystem.model.FlightBookingSystem;
+
 	/**
 	 * Command to add a new booking to the flight booking system.
 	 * @author AnisaU
 	 * @author UmaeerH
 	 * @version main
 	 */
-
-import bcu.cmp5332.bookingsystem.data.BookingDataManager;
-import bcu.cmp5332.bookingsystem.main.FlightBookingSystemException;
-	import bcu.cmp5332.bookingsystem.model.*;
-	import bcu.cmp5332.bookingsystem.model.FlightBookingSystem;
-	
 	public class AddBooking implements Command {
 	
 	    private Customer customer;
