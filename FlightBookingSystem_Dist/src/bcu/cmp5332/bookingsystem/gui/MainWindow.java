@@ -101,15 +101,15 @@ public class MainWindow extends JFrame implements ActionListener {
     private FlightBookingSystem fbs;
     /**
 	 * Declares a constructor for the MainWindow class
+	 * @param fbs the flight booking system we are loading
 	 */
     public MainWindow(FlightBookingSystem fbs) {
-
         initialize();
         this.fbs = fbs;
     }
     /**
      * Declares a public method named getFlightBookingSystem that returns an instance of the FlightBookingSystem class
-     * @return
+     * @return fbs returns the flight booking system
      */
     public FlightBookingSystem getFlightBookingSystem() {
         return fbs;
@@ -198,9 +198,13 @@ public class MainWindow extends JFrame implements ActionListener {
 /* Uncomment the following line to not terminate the console app when the window is closed */
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }	
-
-/* Uncomment the following code to run the GUI version directly from the IDE */
-    //FIXME - comment lines below to convert back to CLI
+ 
+    
+    /**
+     * @throws FlightBookingSystemException if there is an creating a class
+     * @throws IOException if there is an error reading or accessing the file
+     * @param args this is a list of the data read
+     */
     public static void main(String[] args) throws IOException, FlightBookingSystemException {
         FlightBookingSystem fbs = FlightBookingSystemData.load();
          new MainWindow(fbs);			

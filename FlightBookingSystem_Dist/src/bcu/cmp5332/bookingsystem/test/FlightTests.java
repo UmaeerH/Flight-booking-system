@@ -12,11 +12,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 /** 
- * Test class for Flight functionalities. 
+ * Test suite for the Flight class. 
  * @author UmaeerH
  * @author AnisaU
  * @version main
  * 
+ * This class contains the default constructor and other necessary methods to handle command parsing.
  */
 public class FlightTests {
 	private Flight testFlight;

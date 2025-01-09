@@ -9,16 +9,37 @@ import org.junit.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.time.LocalDate;
+
 /** 
- * Test class for the Booking class. 
+ * Test suite for the booking class.
+ * @author UmaeerH
+ * @author AnisaU03
+ * @version main
+ * 
+ * @see Booking
+ * @see Flight
+ * @see Flight
+ * 
+ * This class contains the default constructor and other necessary methods to handle command parsing.
  */
+
+
 public class BookingTests {
     private Booking testBooking;
     private Flight testFlight;
 	private Customer testCustomer;
-	/** 
-	 * Sets up the test environment before each test. 
-	 */
+	/**
+     * Default constructor for the BookingTests class.
+     * Initialises a new instance of the BookingTests without any specific parameters.
+     */
+    public BookingTests() {
+        // Default constructor
+    }
+    
+    
+    /**
+     * Initialising the false classes for testing purposes
+     */
 	@Before
     public void setUp() {
         testFlight = new Flight(50, "AA123", "London", "New York", LocalDate.now(), 100, 500.0, false);

@@ -7,7 +7,10 @@ import bcu.cmp5332.bookingsystem.model.FlightBookingSystem;
  * Interface for commands that can be executed on the Flight Booking System.
  */
 public interface Command {
-	// space only, no tabs
+	
+	/**
+     * Help message of all the commands.
+     */
     public static final String HELP_MESSAGE = "Commands:\n"
         + "\tlistflights                               print all flights\n"
         + "\tlistcustomers                             print all customers\n"

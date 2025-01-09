@@ -6,8 +6,18 @@ import bcu.cmp5332.bookingsystem.model.FlightBookingSystem;
 
 import java.util.List;
 
-public class ListFlights implements Command {
+/**
+ * Command to list all the non-removed flights to the user.
+ * @author UmaeerH
+ * @author AnisaU03
+ * @version main
+ */
 
+public class ListFlights implements Command {
+	
+	/*
+	 * @param flightBookingSystem the flight booking system we are listing from
+	 */
     @Override
     public void execute(FlightBookingSystem flightBookingSystem) throws FlightBookingSystemException {
         List<Flight> flights = flightBookingSystem.getFlights();

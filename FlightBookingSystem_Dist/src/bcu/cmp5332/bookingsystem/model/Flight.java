@@ -227,16 +227,10 @@ public class Flight {
     
     }
     
-    /*
-     * Calculating price: we will use two multipliers
-     * Late Booking Multiplier: 
-     * If days until flight are <30, we will progressively charge more. (1.00 - 1.30x multi)
-     * 
-     * Availability Multiplier:
-     * % of seats filled result in higher cost. (1.00 - 1.5x multi)
-     * 
+    /**
+     * Gets the cost of the booking for the customer
+     * @return bookingPrice the amount the customer will pay
      */
-    
     public double getBookingPrice() {
     	double bookingPrice = price;
     	// Late booking multiplier

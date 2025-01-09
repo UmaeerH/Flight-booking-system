@@ -10,10 +10,25 @@ import java.io.PrintWriter;
 import java.time.LocalDate;
 import java.util.Scanner;
 
+/**
+ * Handles the loading and saving of the FLIGHT class. 
+ * @author UmaeerH
+ * @author AnisaU03
+ * @version main
+ * 
+ * This class contains the default constructor and other necessary methods to handle command parsing.
+ */
+
 public class FlightDataManager implements DataManager {
+	
     
     private final String RESOURCE = "./resources/data/flights.txt";
-    
+    /**
+     * Loads flight data from a file into the flight booking system. 
+     * @param fbs the flight booking system to load flight data into 
+     * @throws IOException if an I/O error occurs while reading the file 
+     * @throws FlightBookingSystemException if an error occurs while parsing flight data 
+     */
     @Override
     public void loadData(FlightBookingSystem fbs) throws IOException, FlightBookingSystemException {
         try (Scanner sc = new Scanner(new File(RESOURCE))) {
@@ -40,6 +55,12 @@ public class FlightDataManager implements DataManager {
             }
         }
     }
+    
+    /**
+     * Stores flight data from the flight booking system into a file. 
+     * @param fbs the flight booking system containing flight data 
+     * @throws IOException if an I/O error occurs while writing to the file 
+     */
     
     @Override
     public void storeData(FlightBookingSystem fbs) throws IOException {

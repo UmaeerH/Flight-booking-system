@@ -16,13 +16,22 @@ import java.util.Scanner;
  * @author UmaeerH
  * @author AnisaU03
  * @version main
+ * 
+ * This class contains the default constructor and other necessary methods to handle command parsing.
  */
 
 public class BookingDataManager implements DataManager {
 	
-	/**
-     * The path to the bookings data file.
+    /**
+     * Default constructor for the BookingDataManager class.
      */
+    public BookingDataManager() {
+        // Default constructor
+    }
+	
+	/**
+	 * Declares where the file is found 
+	 */
     public final String RESOURCE = "./resources/data/bookings.txt";
     /** 
      * Loads booking data from a file into the flight booking system. 

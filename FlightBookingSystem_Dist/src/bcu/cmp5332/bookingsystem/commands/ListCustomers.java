@@ -10,6 +10,8 @@ import java.util.List;
  * @author UmaeerH
  * @author AnisaU03
  * @version main
+ * 
+ * This class contains the default constructor and other necessary methods to handle command parsing.
  */
 public class ListCustomers implements Command {
 	/**

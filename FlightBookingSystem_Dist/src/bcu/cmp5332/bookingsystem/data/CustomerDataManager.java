@@ -14,6 +14,8 @@ import java.util.Scanner;
  * @author UmaeerH
  * @author AnisaU03
  * @version main 
+ * 
+ * This class contains the default constructor and other necessary methods to handle command parsing.
  */
 public class CustomerDataManager implements DataManager {
 
@@ -52,6 +54,8 @@ public class CustomerDataManager implements DataManager {
      * Stores customer data from the flight booking system into a file. 
      * @param fbs the flight booking system containing customer data 
      * @throws IOException if an I/O error occurs while writing to the file 
+     * 
+     * This class contains the default constructor and other necessary methods to handle command parsing.
      */
 
     @Override

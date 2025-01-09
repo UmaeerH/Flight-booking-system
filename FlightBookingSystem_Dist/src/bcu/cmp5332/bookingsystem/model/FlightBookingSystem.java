@@ -9,6 +9,8 @@ import java.util.*;
  * @author UmaeerH
  * @author AnisaU03
  * @version main
+ * 
+ * This class contains the default constructor and other necessary methods to handle command parsing.
  */
 public class FlightBookingSystem {
     

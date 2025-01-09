@@ -15,15 +15,26 @@ import java.time.format.DateTimeParseException;
  * @author UmaeerH
  * @author AnisaU03
  * @version main
+ * 
+ * This class contains the default constructor and other necessary methods to handle command parsing.
+ * 
  */
+
 @SuppressWarnings("unused")
 public class CommandParser {
+	/**
+     * Default constructor for the CommandParser class.
+     */
+    public CommandParser() {
+        // Default constructor
+    }
 	/** 
 	 * Parses a line of input and returns the corresponding Command object. 
 	 * @param line the input line containing the command and its parameters 
 	 * @return the Command object corresponding to the parsed input 
 	 * @throws IOException if an I/O error occurs 
 	 * @throws FlightBookingSystemException if an error occurs related to the flight booking system
+	 * This class contains the default constructor and other necessary methods to handle command parsing.
 	 */
     public static Command parse(String line) throws IOException, FlightBookingSystemException {
 

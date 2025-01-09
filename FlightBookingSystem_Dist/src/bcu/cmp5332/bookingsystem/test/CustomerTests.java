@@ -10,7 +10,12 @@ import bcu.cmp5332.bookingsystem.model.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 /** 
- * Test class for the Customer class. 
+ * Test suite for the Customer class.
+ * @author UmaeerH
+ * @author AnisaU03
+ * @version main
+ * 
+ * This class contains the default constructor and other necessary methods to handle command parsing.
  */
 public class CustomerTests {
 	private Flight testFlight;

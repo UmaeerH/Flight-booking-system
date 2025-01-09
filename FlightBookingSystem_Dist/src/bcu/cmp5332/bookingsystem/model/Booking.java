@@ -45,15 +45,15 @@ public class Booking {
     	return bookingID;
     }
     /**
-     * Returns the customer associated with the booking. 
-     * @return the customer associated with the booking 
+     * Sets the ID of the booking. 
+     * @param newID the ID of the new booking. 
      */
 	public void setId(int newID) {
     	this.bookingID = newID;
     }
 	/**
-	 * Sets the customer associated with the booking. 
-	 * @param newCustomer the new customer associated with the booking 
+	 * Gets the customer associated with the booking. 
+	 * @return returns the customer
 	 */
 	public Customer getCustomer() {
 		return customer;

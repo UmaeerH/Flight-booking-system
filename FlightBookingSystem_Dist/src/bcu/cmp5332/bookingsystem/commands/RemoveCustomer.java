@@ -21,7 +21,7 @@ public class RemoveCustomer implements Command {
     
 	/**
      * Constructor to create an RemoveCustomer command with specified ID. 
-     * @param customerID id of the customer
+     * @param customerid id of the customer
      */
     
     public RemoveCustomer(int customerid) {

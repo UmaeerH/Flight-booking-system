@@ -18,9 +18,17 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 
+/**
+ * GUI window for adding a new Window to the flight booking system. 
+ * @author UmaeerH
+ * @author AnisaU03
+ * @version main
+ */
+
 public class AddFlightWindow extends JFrame implements ActionListener {
 	/**
 	 * The serialVersionUID helps maintain the compatibility of serialised objects across different versions of a class
+	 * 
 	 */
     private static final long serialVersionUID = -2525255480273182291L;
     /** 
