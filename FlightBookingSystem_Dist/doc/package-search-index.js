@@ -1,1 +1,1 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"bcu.cmp5332.bookingsystem.main"}];updateSearchResults();
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"bcu.cmp5332.bookingsystem.test"}];updateSearchResults();
