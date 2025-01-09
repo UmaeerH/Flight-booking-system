@@ -138,6 +138,7 @@ public class FlightBookingSystem {
 		                  .append(", Flight Date: ").append(booking.getFlight().getDepartureDate())
 		                  .append("\nCost: £").append(booking.getCost())
 		                  .append(", Flight: ").append(booking.getFlight().getFlightNumber())
+		                  .append(", ID: ").append(booking.getFlight().getId())
 		                  .append(" : ").append(booking.getFlight().getOrigin())
 		                  .append(" to ").append(booking.getFlight().getDestination()).append("\n");
 					} else {
@@ -148,6 +149,7 @@ public class FlightBookingSystem {
 	                	  .append(", Flight Date: ").append(booking.getFlight().getDepartureDate())
 	                	  .append("\nCost: £").append(booking.getCost())
 	                	  .append(", Flight: ").append(booking.getFlight().getFlightNumber())
+	                	  .append(", ID: ").append(booking.getFlight().getId())
 	                	  .append(" | ").append(booking.getFlight().getOrigin())
 	                	  .append(" to ").append(booking.getFlight().getDestination()).append("\n");
 					}
@@ -159,13 +161,14 @@ public class FlightBookingSystem {
 	                  .append("\nCancellation Cost: £").append(booking.getCanCost())
 	                  .append("\nCost: £").append(booking.getCost())
 	                  .append(", Flight: ").append(booking.getFlight().getFlightNumber())
+	                  .append(", ID: ").append(booking.getFlight().getId())
 	                  .append(" | ").append(booking.getFlight().getOrigin())
 	                  .append(" to ").append(booking.getFlight().getDestination()).append("\n");
 	            }
         	}
 	        returnString.append("================\n").append(bookingAmt).append(" active booking(s)");
         } else {
-            returnString.append("No active bookings");
+            returnString.append("\nNo active bookings");
         }
         return returnString.toString();
     }

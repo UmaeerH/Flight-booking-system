@@ -40,6 +40,10 @@ public class UpdateBooking implements Command {
 		updateFee = Math.round(updateFee * 100.0) / 100.0;
 		Flight newFlight = flightBookingSystem.getFlightByID(newFlightid);
 		
+		if (newFlightid == booking.getFlightID()) {
+			throw new FlightBookingSystemException("Cannot update flight to the same flight");
+		}
+		
 		if (newFlight.getFreeCapacity() == 0) {
         	throw new FlightBookingSystemException("Flight is full");
         }

@@ -356,7 +356,7 @@ public class MainWindow extends JFrame implements ActionListener {
         panel.add(new JScrollPane(textArea), BorderLayout.CENTER);
 
         frame.getContentPane().add(panel);
-        frame.setSize(500, 400);
+        frame.setSize(600, 400);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
     }
