@@ -14,6 +14,14 @@ import bcu.cmp5332.bookingsystem.main.FlightBookingSystemException;
  */
 
 public class LoadGUI implements Command {
+	/**
+     * Default constructor for the LoadGUI class.
+     * 
+     * Initialises a new instance of the LoadGUI without any specific parameters.
+     */
+    public LoadGUI() {
+        // Default constructor
+    }
 
     @Override
     public void execute(FlightBookingSystem flightBookingSystem) throws FlightBookingSystemException {

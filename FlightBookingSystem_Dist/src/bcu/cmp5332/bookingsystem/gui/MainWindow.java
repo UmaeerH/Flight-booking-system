@@ -201,6 +201,8 @@ public class MainWindow extends JFrame implements ActionListener {
  
     
     /**
+     * Initialises the FlightBookingSystem by loading the necessary data 
+     * and creates a main window to interact with that system
      * @throws FlightBookingSystemException if there is an creating a class
      * @throws IOException if there is an error reading or accessing the file
      * @param args this is a list of the data read
@@ -449,7 +451,7 @@ public class MainWindow extends JFrame implements ActionListener {
     }
     
     /**
-     *  Window that pops up when a flight is double clicked
+     * Window that pops up when a flight is double clicked
      * @param flightID
      * @throws FlightBookingSystemException
      */

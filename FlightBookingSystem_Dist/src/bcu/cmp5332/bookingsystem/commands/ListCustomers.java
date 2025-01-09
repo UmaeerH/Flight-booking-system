@@ -15,6 +15,14 @@ import java.util.List;
  */
 public class ListCustomers implements Command {
 	/**
+     * Default constructor for the ListCustomers class.
+     * 
+     * Initialises a new instance of the ListCustomers without any specific parameters.
+     */
+    public ListCustomers() {
+        // Default constructor
+    }
+	/**
 	 * Executes the command to list all customers in the flight booking system. 
 	 * @param flightBookingSystem the flight booking system containing the customers 
 	 * @throws FlightBookingSystemException if an error occurs while retrieving customers 

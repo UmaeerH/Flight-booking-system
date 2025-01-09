@@ -18,6 +18,14 @@ import java.util.Scanner;
  * This class contains the default constructor and other necessary methods to handle command parsing.
  */
 public class CustomerDataManager implements DataManager {
+	/**
+     * Default constructor for the CustomerDataManager class.
+     * 
+     * Initialises a new instance of the CustomerDataManager without any specific parameters.
+     */
+    public CustomerDataManager() {
+        // Default constructor
+    }
 
     private final String RESOURCE = "./resources/data/customers.txt";
     /**

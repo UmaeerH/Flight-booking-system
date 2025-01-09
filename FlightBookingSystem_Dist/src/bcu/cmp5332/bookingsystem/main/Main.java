@@ -15,6 +15,14 @@ import java.io.*;
  * <p>This class does not explicitly declare a constructor as it uses the default * no-argument constructor provided by the compiler.</p>
  */
 public class Main {
+	/**
+     * Default constructor for the Main class.
+     * 
+     * Initialises a new instance of the Main without any specific parameters.
+     */
+    public Main() {
+        // Default constructor
+    }
 	/** 
 	 * The main method of the Flight Booking System application. 
 	 * This method loads the flight booking system data, continuously reads user input, 

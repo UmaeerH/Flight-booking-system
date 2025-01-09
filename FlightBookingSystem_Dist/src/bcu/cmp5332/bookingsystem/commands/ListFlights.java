@@ -14,6 +14,14 @@ import java.util.List;
  */
 
 public class ListFlights implements Command {
+	/**
+     * Default constructor for the ListFlights class.
+     * 
+     * Initialises a new instance of the ListFlights without any specific parameters.
+     */
+    public ListFlights() {
+        // Default constructor
+    }
 	
 	/*
 	 * @param flightBookingSystem the flight booking system we are listing from

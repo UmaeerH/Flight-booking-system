@@ -20,6 +20,14 @@ import java.util.List;
  * This class contains the default constructor and other necessary methods to handle command parsing.
  */
 public class FlightTests {
+	/**
+     * Default constructor for the FlightTests class.
+     * 
+     * Initialises a new instance of the FlightTests without any specific parameters.
+     */
+    public FlightTests() {
+        // Default constructor
+    }
 	private Flight testFlight;
 	private Customer testCustomer;
 	/** 

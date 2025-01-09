@@ -28,14 +28,14 @@ import bcu.cmp5332.bookingsystem.model.FlightBookingSystem;
 	     * Constructor to create an AddBooking command with specified customer ID and flight ID. *
 	     * 
 	     * @param customerID the ID of the customer making the booking *
-	     * @param flightID the ID of the flight to be booked 
+	     * @param flightID the ID of the flight to be booked
 	     */
 	
 	    public AddBooking(int customerID ,int flightID) {
 	        this.customerID = customerID;
 	        this.flightID = flightID;
 	        this.customer = null; 
-	        this.flight = null; 
+	        this.flight = null;
 	        this.cost = 0.0;
 	        this.bookingDate = LocalDate.now();
 	        this.cancelled = false;

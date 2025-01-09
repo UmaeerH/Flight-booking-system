@@ -20,6 +20,14 @@ import java.util.Scanner;
  */
 
 public class FlightDataManager implements DataManager {
+	/**
+     * Default constructor for the FlightDataManager class.
+     * 
+     * Initialises a new instance of the FlightDataManager without any specific parameters.
+     */
+    public FlightDataManager() {
+        // Default constructor
+    }
 	
     
     private final String RESOURCE = "./resources/data/flights.txt";

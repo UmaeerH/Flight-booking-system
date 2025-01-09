@@ -16,6 +16,14 @@ import java.util.List;
  * This class contains the default constructor and other necessary methods to handle command parsing.
  */
 public class FlightBookingSystemData {
+	/**
+     * Default constructor for the FlightBookingSystemData class.
+     * 
+     * Initialises a new instance of the FlightBookingSystemData without any specific parameters.
+     */
+    public FlightBookingSystemData() {
+        // Default constructor
+    }
     
 	/*
 	 * Loads the data once

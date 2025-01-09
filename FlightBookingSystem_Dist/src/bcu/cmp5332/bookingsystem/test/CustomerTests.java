@@ -18,6 +18,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * This class contains the default constructor and other necessary methods to handle command parsing.
  */
 public class CustomerTests {
+	/**
+     * Default constructor for the CustomerTests class.
+     * 
+     * Initialises a new instance of the CustomerTests without any specific parameters.
+     */
+    public CustomerTests() {
+        // Default constructor
+    }
 	private Flight testFlight;
 	private Customer testCustomer;
 	private Booking testBooking;

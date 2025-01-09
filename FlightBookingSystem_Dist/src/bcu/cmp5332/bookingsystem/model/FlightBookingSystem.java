@@ -13,6 +13,14 @@ import java.util.*;
  * This class contains the default constructor and other necessary methods to handle command parsing.
  */
 public class FlightBookingSystem {
+	/**
+     * Default constructor for the FlightBookingSystem class.
+     * 
+     * Initialises a new instance of the FlightBookingSystem without any specific parameters.
+     */
+    public FlightBookingSystem() {
+        // Default constructor
+    }
     
     private final LocalDate systemDate = LocalDate.now();
     
