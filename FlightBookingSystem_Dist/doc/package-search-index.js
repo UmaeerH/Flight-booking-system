@@ -1,1 +1,0 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"bcu.cmp5332.bookingsystem.commands"},{"l":"bcu.cmp5332.bookingsystem.data"},{"l":"bcu.cmp5332.bookingsystem.gui"},{"l":"bcu.cmp5332.bookingsystem.main"},{"l":"bcu.cmp5332.bookingsystem.model"},{"l":"bcu.cmp5332.bookingsystem.test"}];updateSearchResults();
